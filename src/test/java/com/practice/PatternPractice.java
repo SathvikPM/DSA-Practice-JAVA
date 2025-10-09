@@ -12,8 +12,14 @@ public class PatternPractice {
 //         printHallowSquarePattern();
 //        printHallowSquareNumbers();
 //        printNumberPattern();
-        printNumberPattern2();
+//        printNumberPattern2();
+//        printNumberPattern3();
+//        printRightTraiangle();
+//        printRightTraiangleNum();
+        printRightTraiangleCount();
+
     }
+
     public static void printSquareStarPattern(){
 
         int n=scan.nextInt();
@@ -89,6 +95,64 @@ public class PatternPractice {
             System.out.println();
         }
     }
+
+    public static void printNumberPattern3(){
+        int n=scan.nextInt();
+        //method 1
+        for(int i=1;i<=n;i++){
+            int count=i;
+            for(int j=1;j<=n;j++){
+                System.out.print(count+" ");
+                count++;
+            }
+            System.out.println();
+        }
+        System.out.println("Method2");
+        //method 2(Efficent)
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=n;j++){
+                System.out.print(i+j-1+" ");
+
+            }
+            System.out.println();
+        }
+    }
+
+    public static  void printRightTraiangle(){
+        int n=scan.nextInt();
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=i;j++){
+                System.out.print("*"+" ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static  void printRightTraiangleNum(){
+        int n=scan.nextInt();
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=i;j++){
+                System.out.print(i+" ");
+            }
+            System.out.println();
+        }
+    }
+    public static  void printRightTraiangleCount(){
+        int n=scan.nextInt();
+        int count=1;
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=i;j++){
+                System.out.print(count+" ");
+                count++;
+            }
+            System.out.println();
+        }
+    }
+
+
+
+
+
 
 
 
