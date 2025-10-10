@@ -16,7 +16,10 @@ public class PatternPractice {
 //        printNumberPattern3();
 //        printRightTraiangle();
 //        printRightTraiangleNum();
-        printRightTraiangleCount();
+//        printRightTraiangleCount();
+//        printReverseRightAngleTraiangle();
+//        printPyramid();
+        printRightAngleTranglewithSpaces();
 
     }
 
@@ -148,6 +151,52 @@ public class PatternPractice {
             System.out.println();
         }
     }
+
+    public static  void printReverseRightAngleTraiangle(){
+        int n=scan.nextInt();
+        for(int i=1;i<=n;i++){
+            for(int k=1;k<=n-i;k++){
+                System.out.print(" ");
+            }
+            for(int j=1;j<=i;j++){
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    public static  void printPyramid(){
+        int n=scan.nextInt();
+        for(int i=1;i<=n;i++){
+            for(int k=1;k<=n-i;k++){
+                System.out.print(" ");
+            }
+            for(int j=1;j<=i;j++){
+                System.out.print("*"+" ");
+            }
+            System.out.println();
+        }
+    }
+
+    public  static  void printRightAngleTranglewithSpaces(){
+        int n=scan.nextInt();
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=i;j++){
+                if(j==1||i==n||i==j){
+                    System.out.print("*");
+                }else{
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+        }
+    }
+
+
+
+
+
+
 
 
 
