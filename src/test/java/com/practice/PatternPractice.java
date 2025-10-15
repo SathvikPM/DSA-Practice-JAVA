@@ -20,8 +20,9 @@ public class PatternPractice {
 //        printReverseRightAngleTraiangle();
 //        printPyramid();
 //        printRightAngleTranglewithSpaces();
-        printHallowPyramid();
-
+//        printHallowPyramid();
+        printReverseRightAngleTraiangle2();
+          printReversePyramid();
     }
 
     public static void printSquareStarPattern(){
@@ -214,6 +215,28 @@ public class PatternPractice {
 
             }
                 System.out.println();
+        }
+
+    }
+    public static void printReverseRightAngleTraiangle2(){
+        int n=scan.nextInt();
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n-i;j++){
+                System.out.print("*"+" ");
+            }
+            System.out.println();
+        }
+    }
+    public  static  void printReversePyramid(){
+        int n=scan.nextInt();
+        for(int i=0;i<n;i++){
+            for(int k=0;k<=i;k++){
+                System.out.print(" ");
+            }
+            for(int j=0;j<n-i;j++){
+                System.out.print("*"+" ");
+            }
+            System.out.println();
         }
 
     }
