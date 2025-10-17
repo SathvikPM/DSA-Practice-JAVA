@@ -26,7 +26,8 @@ public class PatternPractice {
 //        printReversePyramid();
 //        printDoublePyramidPattern();
 //        symatericPattern();
-        zeroOneRightAngleTrianglePattern();
+//        zeroOneRightAngleTrianglePattern();
+        printPattern();
     }
 
     /*  OUTPUT for n=5
@@ -401,5 +402,40 @@ public class PatternPractice {
             }
             System.out.println();
         }
+    }
+
+            /*
+        Example Output for n = 5:
+
+        1        1
+        12      21
+        123    321
+        1234  4321
+        1234554321
+        */
+    public static void  printPattern(){
+        int n=scan.nextInt();
+        int spaces=2*(n-1);
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=i;j++){
+                System.out.print(j);
+            }
+            for(int k=i;k<=spaces;k++){
+                System.out.print(" ");
+            }
+            for(int j=i;j>=1;j--){
+                System.out.print(j);
+            }
+
+            System.out.println();
+            spaces=spaces-2;
+
+        }
+
+
+
+
+
+
     }
 }
