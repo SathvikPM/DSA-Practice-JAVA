@@ -8,26 +8,29 @@ public class PatternPractice {
 
     public static void main(String[] args) {
 
-//        printSquareStarPattern();
-//        printSquareNumberPattern();
-//        printHallowSquarePattern();
-//        printHallowSquareNumbers();
-//        printNumberPattern();
-//        printNumberPattern2();
-//        printNumberPattern3();
-//        printRightTraiangle();
-//        printRightTraiangleNum();
-//        printRightTraiangleCount();
-//        printReverseRightAngleTraiangle();
-//        printPyramid();
-//        printRightAngleTranglewithSpaces();
-//        printHallowPyramid();
-//        printReverseRightAngleTraiangle2();
-//        printReversePyramid();
-//        printDoublePyramidPattern();
-//        symatericPattern();
-//        zeroOneRightAngleTrianglePattern();
-        printPattern();
+//        pattern1();
+//        pattern2();
+//        pattern3();
+//        pattern4();
+//        pattern5();
+//        pattern6();
+//        pattern7();
+//        pattern8();
+//        pattern9();
+//        pattern10();
+//        pattern11();
+//        pattern12();
+//        pattern13();
+//        pattern14();
+//        pattern15();
+//        pattern16();
+//        pattern17();
+//        pattern18();
+//        pattern19();
+//        pattern20();
+//       pattern21();
+//        pattern22();
+        pattern23();
     }
 
     /*  OUTPUT for n=5
@@ -37,7 +40,7 @@ public class PatternPractice {
      * * * * *
      * * * * *
      */
-    public static void printSquareStarPattern() {
+    public static void pattern1() {
         int n = scan.nextInt();
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n; j++) {
@@ -54,7 +57,7 @@ public class PatternPractice {
         4 4 4 4 4
         5 5 5 5 5
     */
-    public static void printSquareNumberPattern() {
+    public static void pattern2() {
         int n = scan.nextInt();
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n; j++) {
@@ -71,7 +74,7 @@ public class PatternPractice {
      *   *
      *****
      */
-    public static void printHallowSquarePattern() {
+    public static void pattern3() {
         int n = scan.nextInt();
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n; j++) {
@@ -91,7 +94,7 @@ public class PatternPractice {
         4   4
         55555
     */
-    public static void printHallowSquareNumbers() {
+    public static void pattern4() {
         int n = scan.nextInt();
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n; j++) {
@@ -111,7 +114,7 @@ public class PatternPractice {
         16 17 18 19 20
         21 22 23 24 25
     */
-    public static void printNumberPattern() {
+    public static void pattern5() {
         int n = scan.nextInt();
         int count = 1;
         for (int i = 1; i <= n; i++) {
@@ -132,7 +135,7 @@ public class PatternPractice {
         04 08 12 16 20
         05 10 15 20 25
     */
-    public static void printNumberPattern2() {
+    public static void pattern6() {
         int n = scan.nextInt();
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n; j++) {
@@ -151,7 +154,7 @@ public class PatternPractice {
         4 5 6 7 8
         5 6 7 8 9
     */
-    public static void printNumberPattern3() {
+    public static void pattern7() {
         int n = scan.nextInt();
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n; j++) {
@@ -168,7 +171,7 @@ public class PatternPractice {
      * * * *
      * * * * *
      */
-    public static void printRightTraiangle() {
+    public static void pattern8() {
         int n = scan.nextInt();
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= i; j++) {
@@ -185,7 +188,7 @@ public class PatternPractice {
         4 4 4 4
         5 5 5 5 5
     */
-    public static void printRightTraiangleNum() {
+    public static void pattern9() {
         int n = scan.nextInt();
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= i; j++) {
@@ -202,7 +205,7 @@ public class PatternPractice {
         7 8 9 10
         11 12 13 14 15
     */
-    public static void printRightTraiangleCount() {
+    public static void pattern10() {
         int n = scan.nextInt();
         int count = 1;
         for (int i = 1; i <= n; i++) {
@@ -221,7 +224,7 @@ public class PatternPractice {
      ****
      *****
      */
-    public static void printReverseRightAngleTraiangle() {
+    public static void pattern11() {
         int n = scan.nextInt();
         for (int i = 1; i <= n; i++) {
             for (int k = 1; k <= n - i; k++)
@@ -239,7 +242,7 @@ public class PatternPractice {
      * * * *
      * * * * *
      */
-    public static void printPyramid() {
+    public static void pattern12() {
         int n = scan.nextInt();
         for (int i = 1; i <= n; i++) {
             for (int k = 1; k <= n - i; k++)
@@ -257,7 +260,7 @@ public class PatternPractice {
      *  *
      *****
      */
-    public static void printRightAngleTranglewithSpaces() {
+    public static void pattern13() {
         int n = scan.nextInt();
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= i; j++) {
@@ -277,7 +280,7 @@ public class PatternPractice {
      *     *
      * * * * *
      */
-    public static void printHallowPyramid() {
+    public static void pattern14() {
         int n = scan.nextInt();
         for (int i = 1; i <= n; i++) {
             for (int k = 1; k <= n - i; k++)
@@ -299,7 +302,7 @@ public class PatternPractice {
      * *
      *
      */
-    public static void printReverseRightAngleTraiangle2() {
+    public static void pattern15() {
         int n = scan.nextInt();
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n - i; j++) {
@@ -316,7 +319,7 @@ public class PatternPractice {
      * *
      *
      */
-    public static void printReversePyramid() {
+    public static void pattern16() {
         int n = scan.nextInt();
         for (int i = 0; i < n; i++) {
             for (int k = 0; k <= i; k++)
@@ -338,7 +341,7 @@ public class PatternPractice {
      * *
      *
      */
-    public static void printDoublePyramidPattern() {
+    public static void pattern17() {
         int n = scan.nextInt();
         for (int i = 0; i < n; i++) {
             for (int k = 0; k < n - i; k++)
@@ -367,7 +370,7 @@ public class PatternPractice {
      **
      *
      */
-    public static void symatericPattern() {
+    public static void pattern18() {
         int n = scan.nextInt();
         for (int i = 0; i <= 2 * n - 1; i++) {
             if (i > n) {
@@ -388,7 +391,7 @@ public class PatternPractice {
         0101
         10101
     */
-    public static void zeroOneRightAngleTrianglePattern() {
+    public static void pattern19() {
         int n = scan.nextInt();
         int start;
         for (int i = 0; i < n; i++) {
@@ -404,38 +407,129 @@ public class PatternPractice {
         }
     }
 
-            /*
-        Example Output for n = 5:
-
+    /*
         1        1
         12      21
         123    321
         1234  4321
         1234554321
-        */
-    public static void  printPattern(){
-        int n=scan.nextInt();
-        int spaces=2*(n-1);
-        for(int i=1;i<=n;i++){
-            for(int j=1;j<=i;j++){
+    */
+    public static void pattern20() {
+        int n = scan.nextInt();
+        int spaces = (n*2)-2;
+        for (int i = 1; i<=n; i++) {
+            for (int j = 1; j <= i; j++) {
                 System.out.print(j);
             }
-            for(int k=i;k<=spaces;k++){
+            for (int k = 1; k <= spaces; k++) {
                 System.out.print(" ");
             }
-            for(int j=i;j>=1;j--){
+            for (int j = i; j >= 1; j--) {
                 System.out.print(j);
             }
-
             System.out.println();
-            spaces=spaces-2;
+            spaces = spaces - 2;
+        }
+    }
 
+    /*
+     **********
+     ****  ****
+     ***    ***
+     **      **
+     *        *
+     */
+    public static  void  pattern21(){
+        int n=scan.nextInt();
+        int space=0;
+        for(int i=1;i<=n;i++){
+            for(int j=i;j<=n;j++){
+                System.out.print("*");
+            }
+            for(int k=1;k<=space;k++){
+                System.out.print(" ");
+            }
+            for(int j=i;j<=n;j++){
+                System.out.print("*");
+            }
+            System.out.println();
+            space=space+2;
         }
 
 
-
-
-
+    }
+    /*
+     *        *
+     **      **
+     ***    ***
+     ****  ****
+     **********
+    */
+    public static  void  pattern22() {
+        int n = scan.nextInt();
+        int spaces= (n*2)-2;
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=i;j++){
+                System.out.print("*");
+            }
+            for(int k=1;k<=spaces;k++){
+                System.out.print(" ");
+            }
+            for(int j=1;j<=i;j++){
+                System.out.print("*");
+            }
+            System.out.println();
+            spaces=spaces-2;
+        }
+    }
+    /*
+     **********
+     ****  ****
+     ***    ***
+     **      **
+     *        *
+     *        *
+     **      **
+     ***    ***
+     ****  ****
+     **********
+     */
+    public static void pattern23(){
+        int n=scan.nextInt();
+        int spaces=0;
+        for(int i=1;i<=n;i++){
+            for(int j=i;j<=n;j++){
+                System.out.print("*");
+            }
+            for(int k=1;k<=spaces;k++){
+                System.out.print(" ");
+            }
+            for(int j=i;j<=n;j++){
+                System.out.print("*");
+            }
+            System.out.println();
+            spaces=spaces+2;
+        }
+        spaces=(n*2)-2;
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=i;j++){
+                System.out.print("*");
+            }
+            for(int k=1;k<=spaces;k++){
+                System.out.print(" ");
+            }
+            for(int j=1;j<=i;j++){
+                System.out.print("*");
+            }
+            System.out.println();
+            spaces=spaces-2;
+        }
 
     }
+
+
+
+
+
+
 }
