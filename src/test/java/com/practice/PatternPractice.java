@@ -30,8 +30,11 @@ public class PatternPractice {
 //        pattern20();
 //       pattern21();
 //        pattern22();
-        pattern23();
+//        pattern23();
+//        pattern24();
+        pattern25();
     }
+
 
     /*  OUTPUT for n=5
      * * * * *
@@ -525,7 +528,104 @@ public class PatternPractice {
             spaces=spaces-2;
         }
 
+
     }
+    /*
+     *        *
+     **      **
+     ***    ***
+     ****  ****
+     **********
+     ****  ****
+     ***    ***
+     **      **
+     *        *
+     */ //striver
+    public static  void  pattern24() {
+        int n = scan.nextInt();
+        int spaces= (n*2)-2;
+        for(int i=1;i<=(n*2)-1;i++){
+            if(i>n){
+
+//                System.out.println(spaces);
+                for(int j=1;j<=n-(i-n);j++){
+                    System.out.print("*");
+                }
+                for(int k=1;k<=spaces;k++){
+                    System.out.print(" ");
+                }
+                for(int j=1;j<=n-(i-n);j++){
+                    System.out.print("*");
+                }
+                System.out.println();
+                spaces=spaces+2;
+            }else{
+                for(int j=1;j<=i;j++){
+                    System.out.print("*");
+                }
+                for(int k=1;k<=spaces;k++){
+                    System.out.print(" ");
+                }
+                for(int j=1;j<=i;j++){
+                    System.out.print("*");
+                }
+                System.out.println();
+                if(spaces!=0){
+                    spaces=spaces-2;
+                }else{
+                    spaces=spaces+2;
+                }
+
+
+            }
+        }
+    }
+
+    /*
+     *        *
+     **      **
+     ***    ***
+     ****  ****
+     **********
+     **********
+     ****  ****
+     ***    ***
+     **      **
+     *        *
+     */
+    public static  void pattern25(){
+        int n=scan.nextInt();
+        int spaces=(n*2)-1;
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=i;j++){
+                System.out.print("*");
+            }
+            for(int k=1;k<spaces;k++){
+                System.out.print(" ");
+            }
+            for(int j=1;j<=i;j++){
+                System.out.print("*");
+            }
+            System.out.println();
+            spaces=spaces-2;
+        }
+        spaces=0;
+        for(int i=1;i<=n;i++){
+            for(int j=i;j<=n;j++){
+                System.out.print("*");
+            }
+            for(int k=1;k<=spaces;k++){
+                System.out.print(" ");
+            }
+            for(int j=i;j<=n;j++){
+                System.out.print("*");
+            }
+            System.out.println();
+            spaces=spaces+2;
+        }
+
+    }
+
 
 
 
