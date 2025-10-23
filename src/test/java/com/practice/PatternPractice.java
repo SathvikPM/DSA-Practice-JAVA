@@ -32,7 +32,8 @@ public class PatternPractice {
 //        pattern22();
 //        pattern23();
 //        pattern24();
-        pattern25();
+//        pattern25();
+        pattern26();
     }
 
 
@@ -625,6 +626,21 @@ public class PatternPractice {
         }
 
     }
+    public static  void pattern26(){
+       int n=scan.nextInt();
+       for(int i=1;i<=n;i++){
+           for(int j=1;j<=n;j++){
+               if(i==1||i==n||j==1||j==n){
+                   System.out.print("*");
+               }else{
+                   System.out.print(" ");
+               }
+           }
+           System.out.println();
+       }
+
+    }
+
 
 
 
