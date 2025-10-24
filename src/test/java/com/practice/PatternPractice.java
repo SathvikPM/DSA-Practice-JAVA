@@ -33,8 +33,12 @@ public class PatternPractice {
 //        pattern23();
 //        pattern24();
 //        pattern25();
-        pattern26();
+//        pattern26();
+//        pattern27();
+//        pattern28();
+        pattern29();
     }
+
 
 
     /*  OUTPUT for n=5
@@ -626,6 +630,13 @@ public class PatternPractice {
         }
 
     }
+    /*
+     *****
+     *   *
+     *   *
+     *   *
+     *****
+     */
     public static  void pattern26(){
        int n=scan.nextInt();
        for(int i=1;i<=n;i++){
@@ -640,6 +651,58 @@ public class PatternPractice {
        }
 
     }
+    //character pattern
+    /*
+    A
+    A B
+    A B C
+    A B C D
+    A B C D E
+     */
+    public static void pattern27(){
+        int n=scan.nextInt();
+        for(int i=1;i<=n;i++){
+            for(char j='A';j<'A'+i;j++){
+                System.out.print(j+" ");
+            }
+            System.out.println();
+        }
+    }
+    /*
+    A B C D E
+    A B C D
+    A B C
+    A B
+    A
+     */
+    public static  void pattern28(){
+        int n=scan.nextInt();
+        for(int i=0;i<=n;i++){
+            for(char j='A';j<'A'+(n-i);j++){
+                System.out.print(j+" ");
+            }
+            System.out.println();
+        }
+    }
+    /*
+    A
+    BB
+    CCC
+    DDDD
+    EEEEE
+     */
+    public static  void pattern29(){
+        int n=scan.nextInt();
+        for(int i=0;i<n;i++){
+            char c=(char)('A'+i);
+            for(int j=0;j<=i;j++){
+                System.out.print(c);
+            }
+            System.out.println();
+        }
+    }
+
+
 
 
 
