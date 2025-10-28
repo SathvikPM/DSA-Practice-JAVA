@@ -16,6 +16,8 @@ public class BasicMaths {
         isEven(2);
         getTable(9);
         findSum(10);
+        oppositeFaceOfDice(6);
+        closestNumber(13,4);
 
     }
     /*
@@ -169,6 +171,53 @@ public class BasicMaths {
         result.add(a);
         result.add(b);
         return result;
+    }
+    /*
+    Input: n = 6
+    Output: 1
+    Explanation: For dice facing number 6 opposite face will have the number 1.
+     */
+    static int oppositeFaceOfDice(int n) {
+        // code here
+        return 7-n;
+    }
+
+    /*
+            Input: n = 13, m = 4
+        Output: 12
+        Explanation: 12 is the closest to 13, divisible by 4.
+
+        Input: n = -15, m = 6
+        Output: -18
+        Explanation: Both -12 and -18 are closest to -15, but -18 has the maximum absolute value.
+     */
+    static int closestNumber(int n, int m) {
+        // code here
+        int leftCount=0;
+        int leftResult=0;
+        for(int i=n;Integer.MIN_VALUE<=i;i-- ){
+            if(i%m==0){
+                leftResult=i;
+                break;
+            }
+            leftCount++;
+        }
+        int rightCount=0;
+        int rightResult=0;
+        for(int i=n;i<=Integer.MAX_VALUE;i++){
+            if(i%m==0){
+                rightResult=i;
+                break;
+            }
+            rightCount++;
+        }
+        if(leftCount==rightCount){
+            return (Math.abs(leftResult) > Math.abs(rightResult)) ? leftResult : rightResult;
+        }
+        if(leftCount<rightCount){
+            return leftResult;
+        }
+        return rightResult;
     }
 
 
