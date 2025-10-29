@@ -18,6 +18,7 @@ public class BasicMaths {
         findSum(10);
         oppositeFaceOfDice(6);
         closestNumber(13,4);
+        nthTermOfAP(1,2,3);
 
     }
     /*
@@ -219,6 +220,96 @@ public class BasicMaths {
         }
         return rightResult;
     }
+    /*
+    Input: a1 = 2, a2 = 3, n = 4
+    Output: 5
+    Explanation: The series is: 2,3,4,5,6.... Thus, the 4th term is 5.
+     */
+    public static int nthTermOfAP(int a1, int a2, int n) {
+        // code here
+        int dif=a2-a1;
+        int res=a1;
+        for(int i=1;i<n;i++){
+            res=res+dif;
+        }
+        return res;
+
+
+
+    }
+    //optimised
+    public static int nthTermOfAPopt(int a1, int a2, int n) {
+        int d = a2 - a1;          // common difference
+        return a1 + (n - 1) * d;  // formula
+    }
+
+    /*
+    Given two positive integers x and y, determine if y is a power of x.
+     If y is a power of x, return True. Otherwise, return False.
+
+    Examples:
+
+    Input: x = 2, y = 8
+    Output: True
+    Explanation: 23 is equal to 8.
+     */
+
+    public boolean isPowerOfAnother(int X, int Y) {
+        // code here
+        int res=1;
+        if(Y==1){
+            return true;
+        }
+        for(int i=0;i<=Y;i++){
+            res=res*X;
+
+            if(res==Y){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+ /*
+ Given a positive number n. Find the sum of all the digits of n.
+
+    Examples:
+
+    Input: n = 687
+    Output: 21
+    Explanation: Sum of 687's digits: 6 + 8 + 7 = 21
+  */
+    static int sumOfDigits(int n) {
+        // code here
+        int sum=0;
+        int last=0;
+        while(n>0){
+            last=n%10;
+            sum=sum+last;
+            n=n/10;
+        }
+        return sum;
+    }
+   /*
+   You are given an integer n. Your task is to reverse the digits, ensuring that the reversed number has no leading zeroes.
+    Examples:
+    Input: n = 122
+    Output: 221
+    Explanation: By reversing the digits of number, number will change into 221.
+    */
+    public int reverseDigits(int n) {
+        // Code here
+        int last=0;
+        int res=0;
+        while(n!=0){
+            last=n%10;
+            res=res*10+last;
+            n=n/10;
+        }
+        return res;
+    }
+
 
 
 
