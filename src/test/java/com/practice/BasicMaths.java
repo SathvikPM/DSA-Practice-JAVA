@@ -12,13 +12,19 @@ public class BasicMaths {
 //        countDigits();
 //        countDigitsWhichDividesNum( 7);
 //        reverse(1534236469);
-        isPalindrome(-121);
-        isEven(2);
-        getTable(9);
-        findSum(10);
-        oppositeFaceOfDice(6);
-        closestNumber(13,4);
-        nthTermOfAP(1,2,3);
+//        isPalindrome(-121);
+//        isEven(2);
+//        getTable(9);
+//        findSum(10);
+//        oppositeFaceOfDice(6);
+//        closestNumber(13,4);
+//        nthTermOfAP(1,2,3);
+        gcd(10,20);
+        if(armstrongNumber(153)){
+            System.out.print("true");
+        }else{
+            System.out.print("false");
+        }
 
     }
     /*
@@ -308,6 +314,65 @@ public class BasicMaths {
             n=n/10;
         }
         return res;
+    }
+
+    /*
+    Given two positive integers a and b, find GCD of a and b.
+    Note: Don't use the inbuilt gcd function
+
+    Examples:
+
+    Input: a = 20, b = 28
+    Output: 4
+    Explanation: GCD of 20 and 28 is 4
+     */
+
+    public static int gcd(int a, int b) {
+        // code here
+
+        // int min=a<b?a:b;
+        // int max=1;
+        // for(int i=2;i<=min;i++){
+        //     if(a%i==0 && b%i==0){
+        //       max=i;
+        //     }
+        // }
+        // return max;
+
+        //optimise(eculean Algorithm)
+        while(a>0 && b>0){
+            if(a>b){
+                a=a%b;
+            }else{
+                b=b%a;
+            }
+        }
+        if(a==0){
+            return b;
+        }
+        return a;
+    }
+
+    static boolean armstrongNumber(int n) {
+        // code here
+
+        int temp=n;
+        // int count=0;
+        // while(n!=0){
+        //     n=n/10;
+        //     count++;
+        // }
+        int res=0;
+        int last=0;
+        while(n!=0){
+            last=n%10;
+            res=(last*last*last)+res;
+            n=n/10;
+        }
+        if(temp==res){
+            return true;
+        }
+        return false;
     }
 
 
