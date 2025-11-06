@@ -20,11 +20,7 @@ public class BasicMaths {
 //        closestNumber(13,4);
 //        nthTermOfAP(1,2,3);
         gcd(10,20);
-        if(armstrongNumber(153)){
-            System.out.print("true");
-        }else{
-            System.out.print("false");
-        }
+        armstrongNumber(153);
 
     }
     /*
@@ -353,27 +349,80 @@ public class BasicMaths {
         return a;
     }
 
+   /*
+    you are given a 3-digit number n, Find whether it is an Armstrong number or not.
+
+    An Armstrong number of three digits is a number such that the sum of the cubes of its
+    digits is equal to the number itself. 371 is an Armstrong number since 33 + 73 + 13 = 371.
+
+    */
     static boolean armstrongNumber(int n) {
         // code here
-
         int temp=n;
-        // int count=0;
-        // while(n!=0){
-        //     n=n/10;
-        //     count++;
-        // }
-        int res=0;
         int last=0;
+        int sum=0;
+        int digits=countDigits(n);
         while(n!=0){
             last=n%10;
-            res=(last*last*last)+res;
+            sum=sum+power(digits,last);
             n=n/10;
         }
-        if(temp==res){
+        if(sum==temp){
             return true;
         }
         return false;
+
     }
+    static int countDigits(int n){
+        int count=0;
+        while(n!=0){
+            n=n/10;
+            count++;
+        }
+        return count;
+    }
+    static int power(int digits, int last){
+        int res=1;
+        for(int i=1;i<=digits;i++){
+            res=res*last;
+        }
+        return res;
+    }
+    /*
+    Aramstrong without inbuilt function
+     */
+
+    static boolean armstrongNumber2(int n) {
+        int temp = n;
+        int sum = 0;
+        int digits = (int) Math.log10(n) + 1; // directly find digits without loop
+
+        while (n > 0) {
+            int last = n % 10;
+            sum += Math.pow(last, digits); // use inbuilt power method
+            n /= 10;
+        }
+
+        return sum == temp;
+    }
+        /*
+        Given a number n, determine whether it is a prime number or not.
+        Note: A prime number is a number greater than 1 that has
+        no positive divisors other than 1 and itself(OPTIMISED)
+         */
+    static boolean isPrime(int n) {
+        // code here
+        if(n<2){
+            return false;
+        }
+        for(int i=2;i*i<=n;i++){
+            if(n%i==0){
+                return false;
+            }
+        }
+        return true;
+    }
+
 
 
 
