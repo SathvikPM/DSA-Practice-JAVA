@@ -94,6 +94,7 @@ public class Recursion {
 
 
         public static void  reverse(int[] arr, int n) {
+
             reverseArray(arr,0,arr.length-1);
         }
         public static void reverseArray(int arr[],int left,int right){
@@ -110,6 +111,52 @@ public class Recursion {
             arr[right]=temp;
 
         }
+
+        /*
+        A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+
+        Given a string s, return true if it is a palindrome, or false otherwise.
+
+        Example 1:
+        Input: s = "A man, a plan, a canal: Panama"
+        Output: true
+        Explanation: "amanaplanacanalpanama" is a palindrome.
+        Example 2:
+
+        Input: s = "race a car"
+        Output: false
+        Explanation: "raceacar" is not a palindrome.
+         */
+
+    public boolean isPalindrome(String s1) {
+        String s="";
+        for(int i=0;i<s1.length();i++){
+            char c=s1.charAt(i);
+            if(c>='A' && c<='Z'){
+                s=s+(char)(c+32);
+            }
+            if ((c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
+                s = s + c;
+            }
+        }
+
+        if(isPalindrom(s,0,s.length()-1)){
+            return true;
+        }
+        return false;
+
+    }
+    public static boolean isPalindrom(String s,int left,int right){
+        if(left>=right){
+            return true;
+        }
+        if(s.charAt(left)!=s.charAt(right)){
+            return  false;
+        }
+        return isPalindrom(s,left+1,right-1);
+
+
+    }
 
 
 
