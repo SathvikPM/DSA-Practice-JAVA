@@ -9,7 +9,7 @@ public class Recursion {
 //        printNumbers3(5); //backtracking
         int arr[]={1,2,3,4,5};
         int n=5;
-        reverse(arr,n);
+        reverse2(arr,n);
         for(int i=0;i<=arr.length-1;i++){
             System.out.print(arr[i]+" ");
         }
@@ -93,6 +93,7 @@ public class Recursion {
      */
 
 
+   //using 2 pointer
         public static void  reverse(int[] arr, int n) {
 
             reverseArray(arr,0,arr.length-1);
@@ -111,6 +112,23 @@ public class Recursion {
             arr[right]=temp;
 
         }
+
+
+        //by using single pointer
+        public static void  reverse2(int[] arr, int n) {
+
+            reverseArray2(arr,0,n);
+        }
+
+        public static  void reverseArray2(int[] arr,int i,int n){
+            if(i>=n/2){
+                return;
+            }
+            swap(arr,i,n-i-1);
+            reverseArray2(arr,i+1,n);
+        }
+
+
 
         /*
         A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
@@ -157,6 +175,48 @@ public class Recursion {
 
 
     }
+
+
+    /*
+    Given a number n, return an array containing the first n Fibonacci numbers.
+
+    Note: The first two numbers of the series are 0 and 1.(without recursion)
+     */
+
+    public static int[] fibonacciNumbers(int n) {
+        // Your code here
+
+        // int arr[]=new int[n];
+        // int first=0;
+        // int second=1;
+        // int next=0;
+        // for(int i=0;i<n;i++){
+        //     arr[i]=first;
+        //     next=first+second;
+        //     first=second;
+        //     second=next;
+        // }
+        // return arr;
+
+        //by using recurrion
+
+        int arr[]=new int[n];
+        for(int i=0;i<=arr.length-1;i++){
+            arr[i]=fibo(i);
+        }
+        return arr;
+
+    }
+    public static int fibo(int n){
+        if(n<=1){
+            return n;
+        }
+        int last=fibo(n-1);
+        int secondLast=fibo(n-2);
+        return last+secondLast;
+    }
+
+
 
 
 
