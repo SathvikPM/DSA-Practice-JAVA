@@ -1,5 +1,7 @@
 package com.practice;
 
+import java.util.ArrayList;
+
 public class Recursion {
     static  int count=1;
 
@@ -215,6 +217,71 @@ public class Recursion {
         int secondLast=fibo(n-2);
         return last+secondLast;
     }
+
+    /*
+    Given an array arr[]. Your task is to find the minimum and maximum elements in the array.
+
+    Examples:
+
+    Input: arr[] = [1, 4, 3, -5, -4, 8, 6]
+    Output: [-5, 8]
+    Explanation: minimum and maximum elements of array are -5 and 8.
+     */
+
+    public ArrayList<Integer> getMinMax(int[] arr) {
+        // code Here
+        int min=Integer.MAX_VALUE;
+        int max=Integer.MIN_VALUE;
+
+        return findMinMax(arr,0,min,max);
+    }
+
+    public ArrayList<Integer> findMinMax(int[] arr,int i,int min,int max){
+
+        if(i>arr.length-1){
+            ArrayList<Integer> res= new ArrayList<Integer>();
+            res.add(min);
+            res.add(max);
+            return res;
+        }
+
+        if(arr[i]>max){
+            max=arr[i];
+        }
+        if(arr[i]<min){
+            min=arr[i];
+        }
+        return  findMinMax(arr,i+1,min,max);
+
+
+
+    }
+
+    /*
+    Input: n = 555
+    Output: true
+    Explanation: The number 555 reads the same backward as forward, so it is a palindrome.
+     */
+    public boolean isPalindrome(int n) {
+        int temp=n;
+        int res=0;
+        return isPalindrome(temp,n,res);
+    }
+
+    public boolean isPalindrome(int temp,int n,int res){
+        if(n==0){
+            if(res==temp){
+                return true;
+            }
+            return false;
+        }
+        int last=n%10;
+        res=res*10+last;
+        return isPalindrome(temp,n/10,res);
+    }
+
+
+
 
 
 
