@@ -280,6 +280,31 @@ public class Recursion {
         return isPalindrome(temp,n/10,res);
     }
 
+    /*
+    You are given an integer array arr[]. The task is to find the sum of it.
+
+    Examples:
+
+    Input: arr[] = [1, 2, 3, 4]
+    Output: 10
+    Explanation: 1 + 2 + 3 + 4 = 10.
+     */
+
+
+    int arraySum(int arr[]) {
+        // code here
+        int sum=0;
+        return arraySum(sum,arr,0);
+
+    }
+    static int arraySum(int sum,int[] arr,int i){
+        if(i>=arr.length){
+            return sum;
+        }
+        sum=sum+arr[i];
+        return arraySum(sum,arr,i+1);
+    }
+
 
 
 
