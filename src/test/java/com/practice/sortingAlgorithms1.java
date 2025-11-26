@@ -72,4 +72,63 @@ public class sortingAlgorithms1 {
             }
         }
     }
+
+    /*
+    Given an array arr[], its starting position l and its ending position r. Sort the array using the merge sort algorithm.
+
+    Examples:
+
+    Input: arr[] = [4, 1, 3, 9, 7]
+    Output: [1, 3, 4, 7, 9]
+    Explanation: We get the sorted array after using merge sort
+     */
+
+
+        void mergeSort(int arr[], int l, int r) {
+            // code here
+            if(l>=r){
+                return;
+            }
+            int mid=(l+r)/2;
+            mergeSort(arr,l,mid);
+            mergeSort(arr,mid+1,r);
+            merge(arr,l,mid,r);
+
+        }
+        public static void merge(int[] arr, int l, int mid, int r){
+
+            int size=r-l+1;
+            int temp[]=new int[size];
+            int i=l;
+            int j=mid+1;
+            int k=0;
+            while(i<=mid && j<=r){
+                if(arr[i]<=arr[j]){
+                    temp[k]=arr[i];
+                    k++;
+                    i++;
+                }else{
+                    temp[k]=arr[j];
+                    k++;
+                    j++;
+                }
+            }
+
+            while(i<=mid){
+                temp[k]=arr[i];
+                k++;
+                i++;
+            }
+            while(j<=r){
+                temp[k]=arr[j];
+                k++;
+                j++;
+            }
+            for(int x=0;x<temp.length;x++){
+                arr[l+x]=temp[x];
+            }
+
+
+        }
+
 }
