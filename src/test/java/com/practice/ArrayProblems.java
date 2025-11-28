@@ -88,4 +88,48 @@ public class ArrayProblems {
         }
         return list;
     }
+
+
+    /*
+    iven an array arr[], check whether it is sorted in non-decreasing order. Return true if it is sorted otherwise false.
+
+    Examples:
+
+    Input: arr[] = [10, 20, 30, 40, 50]
+    Output: true
+    Explanation: The given array is sorted
+     */
+    public boolean isSorted(int[] arr) {
+        // code here
+        for(int i=1;i<arr.length;i++){
+            if(arr[i-1]<=arr[i]){
+                continue;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /*
+    You are given a sorted array arr[] containing positive integers.
+     Your task is to remove all duplicate elements from this array such that each element appears only once.
+    Return an array containing these distinct elements in the same order as they appeared.
+     */
+    ArrayList<Integer> removeDuplicates(int[] arr) {
+        // code here
+        ArrayList<Integer> list=new ArrayList<Integer>();
+        int i=0;
+        list.add(arr[i]);
+        for(int j=1;j<arr.length;j++){
+            if(arr[j]!=arr[i]){
+                list.add(arr[j]);
+                i=j;
+            }
+        }
+        return list;
+    }
+
+
+
 }
