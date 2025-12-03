@@ -146,6 +146,67 @@ public class ArrayProblems {
         return i+1;
     }
 
+    /*
+    Given an array arr[]. Rotate the array to the left (counter-clockwise direction) by d steps,
+    where d is a positive integer. Do the mentioned change in the array in place.
+
+     Note: Consider the array as circular.
+
+    Examples :
+
+    Input: arr[] = [1, 2, 3, 4, 5], d = 2
+    Output: [3, 4, 5, 1, 2]
+    Explanation: when rotated by 2 elements, it becomes 3 4 5 1 2
+     */
+    static void rotateArr(int arr[], int d) { //brute force
+
+        if(d > arr.length){
+            d = d % arr.length;
+        }
+
+        int[] temp = new int[d];
+
+        for(int i = 0; i < d; i++){
+            temp[i] = arr[i];
+        }
+
+        int j = 0;
+        for(int i = d; i < arr.length; i++){
+            arr[j] = arr[i];
+            j++;
+        }
+
+        int k = 0;
+        for(int i = j; i < arr.length; i++){
+            arr[i] = temp[k];
+            k++;
+        }
+    }
+
+
+
+    //optimal
+        public void rotate(int[] nums, int k) {
+            if(nums.length < k){
+                k = k % nums.length;
+            }
+            reverse(nums, 0, k - 1);
+            reverse(nums, k, nums.length - 1);
+            reverse(nums, 0, nums.length - 1);
+        }
+
+        public static void reverse(int[] nums, int i, int j){
+            while(i < j){
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
+                i++;
+                j--;
+            }
+        }
+
+
+
 
 
 }
