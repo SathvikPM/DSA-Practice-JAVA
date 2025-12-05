@@ -1,6 +1,7 @@
 package com.practice;
 
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 public class ArrayProblems {
 
@@ -204,6 +205,137 @@ public class ArrayProblems {
                 j--;
             }
         }
+
+
+
+        /*
+        You are given an array arr[] of non-negative integers.
+        You have to move all the zeros in the array to the right end while maintaining the relative order of the non-zero elements.
+         The operation must be performed in place, meaning you should not use extra space for another array.
+
+        Examples:
+
+        Input: arr[] = [1, 2, 0, 4, 3, 0, 5, 0]
+        Output: [1, 2, 4, 3, 5, 0, 0, 0]
+        Explanation: There are three 0s that are moved to the end
+         */
+        public void moveZeroes1(int[] nums) { //brute
+            int[] temp = new int[nums.length];
+            int index = 0;
+
+            for (int i = 0; i < nums.length; i++) {
+                if (nums[i] != 0) {
+                    temp[index++] = nums[i];
+                }
+            }
+
+            for (int i = 0; i < nums.length; i++) {
+                nums[i] = temp[i];
+            }
+        }
+
+    void pushZerosToEnd(int[] arr) {  //better
+        int i = -1;
+        for (int j = 0; j < arr.length; j++) {
+            if (arr[j] == 0) {
+                i = j;
+                break;
+            }
+        }
+        if (i == -1) return;
+
+        for (int j = i + 1; j < arr.length; j++) {
+            if (arr[j] != 0) {
+                int temp = arr[j];
+                arr[j] = arr[i];
+                arr[i] = temp;
+                i++;
+            }
+        }
+    }
+
+    public void moveZeroes2(int[] arr) { //optimal
+        int index = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] != 0) {
+                arr[index++] = arr[i];
+            }
+        }
+        while (index < arr.length) {
+            arr[index++] = 0;
+        }
+    }
+
+    /*
+    Given two sorted arrays a[] and b[], where each array may contain duplicate elements ,
+     the task is to return the elements in the union of the two arrays in sorted order.
+       Union of two arrays can be defined as the set containing distinct common elements that are present in either of the arrays.
+
+        Examples:
+
+        Input: a[] = [1, 2, 3, 4, 5], b[] = [1, 2, 3, 6, 7]
+        Output: [1, 2, 3, 4, 5, 6, 7]
+        Explanation: Distinct elements including both the arrays are: 1 2 3 4 5 6 7.
+     */
+    public static ArrayList<Integer> findUnion(int a[], int b[]) { //brute Forcr
+        // code here
+        ArrayList<Integer> list=new ArrayList<Integer>();
+        TreeSet<Integer> set= new TreeSet<Integer>();
+        for(int i=0;i<a.length;i++){
+            set.add(a[i]);
+        }
+        for(int j=0;j<b.length;j++){
+            set.add(b[j]);
+        }
+        for(int k:set){
+            list.add(k);
+        }
+        return list;
+    }
+
+    public static ArrayList<Integer> findUnion2(int a[], int b[]) { //optimise
+        // code here
+        ArrayList<Integer> union=new ArrayList<Integer>();
+        int i=0;
+        int j=0;
+        while(i<a.length && j<b.length){
+            if(a[i]<b[j]){
+                if(union.isEmpty()||union.get(union.size()-1)!=a[i]){
+                    union.add(a[i]);
+                }
+                i++;
+            }
+            else if(a[i]>b[j]){
+                if(union.isEmpty()||union.get(union.size()-1)!=b[j]){
+                    union.add(b[j]);
+                }
+                j++;
+            }
+            else{
+                if(union.isEmpty()||union.get(union.size()-1)!=b[j]){
+                    union.add(b[j]);
+                }
+                i++;
+                j++;
+            }
+        }
+        while(i<a.length){
+            if(union.get(union.size()-1)!=a[i]){
+                union.add(a[i]);
+            }
+            i++;
+        }
+        while(j<b.length){
+            if(union.get(union.size()-1)!=b[j]){
+                union.add(b[j]);
+            }
+            j++;
+        }
+        return union;
+    }
+
+
+
 
 
 
