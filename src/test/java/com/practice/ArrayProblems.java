@@ -334,6 +334,230 @@ public class ArrayProblems {
         return union;
     }
 
+    /*
+    Given a binary array nums, return the maximum number of consecutive 1's in the array.
+
+    Example 1:
+
+    Input: nums = [1,1,0,1,1,1]
+    Output: 3
+    Explanation: The first two digits or the last three digits are consecutive 1s. The maximum number of consecutive 1s is 3.
+     */
+    class Solution {
+        public int findMaxConsecutiveOnes(int[] arr) {
+            int count = 0;
+            int maxcount = 0;
+
+            for (int i = 0; i < arr.length; i++) {
+                if (arr[i] == 1) {
+                    count++;
+                    if (count > maxcount) {
+                        maxcount = count;
+                    }
+                } else {
+                    count = 0;
+                }
+            }
+            return maxcount;
+        }
+    }
+
+    /*
+    Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.
+
+    Example 1:
+    Input: nums = [3,0,1]
+    Output: 2
+     */
+        public int missingNumber(int[] nums) { //Brute force
+            int n = nums.length;
+
+            // check every number from 0 to n
+            for (int i = 0; i <= n; i++) {
+                boolean found = false;
+
+                // search for i in the array
+                for (int j = 0; j < nums.length; j++) {
+                    if (nums[j] == i) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                // if i not found → missing number
+                if (!found) {
+                    return i;
+                }
+            }
+
+            return -1; // technically unreachable
+        }
+
+    int missingNum(int arr[]) { //optimise
+        // code here
+        int n=arr.length+1;
+        int sum1=n*(n+1)/2;
+        int sum2=0;
+        for(int i=0;i<arr.length;i++){
+            sum2=arr[i]+sum2;
+        }
+        int missingNum=sum1-sum2;
+        return missingNum;
+    }
+
+    /*
+    intersection WITHOUT duplicates (Unique Intersection)
+
+    Question Type:
+    “Find the intersection of two sorted arrays.”
+
+    What they expect:
+
+    Only common elements
+
+    No duplicates in the result
+
+    Example:
+    arr1 = [1, 2, 2, 3, 4]
+    arr2 = [2, 2, 4, 6, 7]
+    Output:
+    👉 [2, 4]
+     */
+    ArrayList<Integer> intersectionWithoutDuplicates1(int[] a, int[] b) { //brute force
+        ArrayList<Integer> list = new ArrayList<>();
+
+        int[] used = new int[b.length];
+
+        for (int i = 0; i < a.length; i++) {
+
+            for (int j = 0; j < b.length; j++) {
+
+                if (a[i] == b[j] && used[j] == 0) {
+
+                    // prevent duplicates in result
+                    if (list.isEmpty() || list.get(list.size() - 1) != a[i]) {
+                        list.add(a[i]);
+                    }
+
+                    used[j] = 1;
+                    break;
+                }
+
+                if (b[j] > a[i]) {
+                    break;
+                }
+            }
+        }
+
+        return list;
+    }
+
+    public ArrayList<Integer> intersectionWithoutDuplicates2(int arr1[], int arr2[]) { //optimal
+
+        ArrayList<Integer> output = new ArrayList<>();
+        int i = 0, j = 0;
+
+        while (i < arr1.length && j < arr2.length) {
+
+            if (arr1[i] < arr2[j]) {
+                i++;
+            }
+            else if (arr2[j] < arr1[i]) {
+                j++;
+            }
+            else {
+                // Both are equal → check for duplicates before adding
+                if (output.isEmpty() || output.get(output.size() - 1) != arr1[i]) {
+                    output.add(arr1[i]);
+                }
+                i++;
+                j++;
+            }
+        }
+
+        return output;
+    }
+
+
+
+
+
+
+
+    /*
+    Intersection WITH duplicates (Intersection considering frequency)
+
+    Question Type:
+    “Find the intersection of two arrays, including duplicates.”
+    OR
+    “Find the intersection where each element appears as many times as it appears in both arrays.”
+
+    What they expect:
+
+    Common elements
+
+    Include duplicates based on frequency
+
+    Example:
+    arr1 = [1, 2, 2, 3, 4]
+    arr2 = [2, 2, 4, 6, 7]
+
+    Output:
+    👉 [2, 2, 4]
+     */
+
+
+    public ArrayList<Integer> intersectionWithDuplicates1(int arr1[], int arr2[]) { //brute force
+
+        ArrayList<Integer> result = new ArrayList<>();
+        boolean used[] = new boolean[arr2.length];  // to mark matched elements
+
+        for (int i = 0; i < arr1.length; i++) {
+
+            for (int j = 0; j < arr2.length; j++) {
+
+                // if elements match AND arr2[j] is not already used
+                if (arr1[i] == arr2[j] && !used[j]) {
+                    result.add(arr1[i]);
+                    used[j] = true;   // mark arr2 element as used
+                    break;            // move to next element of arr1
+                }
+            }
+        }
+        return result;
+    }
+    public ArrayList<Integer> intersectionWithDuplicates2(int arr1[], int arr2[]) { //optimal
+
+        ArrayList<Integer> output = new ArrayList<>();
+        int i = 0;
+        int j = 0;
+
+        while (i < arr1.length && j < arr2.length) {
+
+            if (arr1[i] < arr2[j]) {
+                i++;
+            }
+            else if (arr2[j] < arr1[i]) {
+                j++;
+            }
+            else {
+                // elements match → add directly (including duplicates)
+                output.add(arr1[i]);
+                i++;
+                j++;
+            }
+        }
+        return output;
+    }
+
+
+
+
+
+
+
+
+
 
 
 
