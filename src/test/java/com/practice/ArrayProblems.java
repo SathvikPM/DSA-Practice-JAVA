@@ -1,6 +1,8 @@
 package com.practice;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class ArrayProblems {
@@ -393,7 +395,7 @@ public class ArrayProblems {
             return -1; // technically unreachable
         }
 
-    int missingNum(int arr[]) { //optimise
+    int missingNum(int arr[]) { //optimise  //another optimise is in XOR class
         // code here
         int n=arr.length+1;
         int sum1=n*(n+1)/2;
@@ -548,6 +550,126 @@ public class ArrayProblems {
             }
         }
         return output;
+    }
+
+    /*
+    Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+    You must implement a solution with a linear runtime complexity and use only constant extra space.
+    Example 1:
+    Input: nums = [2,2,1]
+    Output: 1
+     */
+    public int singleNumber(int[] nums) { //Brute force
+        for(int i=0;i<nums.length;i++){
+            int num=nums[i];
+            int count=0;
+            for(int j=0;j<nums.length;j++){
+                if(num==nums[j]){
+                    count++;
+                }
+            }
+            if(count==1){
+                return num;
+            }
+        }
+        return -1;
+    }
+
+    public int singleNumber2(int[] nums) { //Better works for single number
+        int max=nums[0];
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]>max){
+                max=nums[i];
+            }
+        }
+        int[] hash=new int[max+1];
+
+        for(int i=0;i<nums.length;i++){
+            hash[nums[i]]=hash[nums[i]]+1;
+        }
+
+        for(int i=0;i<hash.length;i++){
+            if(hash[i]==1){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
+    public int singleNumber3(int[] nums) {  //Better
+        HashMap<Integer,Integer> map=new HashMap<Integer,Integer>();
+        for(int i=0;i<nums.length;i++){
+            map.put(nums[i],map.getOrDefault(nums[i],0)+1);
+        }
+
+        for(int key:map.keySet()){
+            if(map.get(key)==1){
+                return key;
+            }
+        }
+        return -1;
+
+
+    }
+
+    //optimise in XOR class
+
+
+    /*
+    Given an array arr[] of positive integers which may contain duplicate elements, return the frequency of each distinct element.
+
+    Examples:
+
+    Input: arr[] = [1, 2, 2, 3, 3, 5]
+    Output: [[1, 1], [2, 2], [3, 2], [5, 1]]
+    Explaiantion: Here element 1 and 5 occur 1 times, 2 and 3 occur 2 times.
+     */
+
+    public ArrayList<ArrayList<Integer>> countFreq1(int[] arr) {  //optimised for small datasets
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+
+        int max = 0;
+        for (int x : arr) {
+            max = Math.max(max, x);
+        }
+
+        int hash[] = new int[max + 1];
+
+        for (int i = 0; i < arr.length; i++) {
+            hash[arr[i]]++;
+        }
+
+        for (int i = 0; i < hash.length; i++) {
+            if (hash[i] > 0) {
+                ArrayList<Integer> count = new ArrayList<>(); // NEW LIST EVERY TIME
+                count.add(i);
+                count.add(hash[i]);
+                res.add(count);
+            }
+        }
+
+        return res;
+    }
+
+
+    public ArrayList<ArrayList<Integer>> countFreq(int[] arr) { //optimised for large dataset
+        // code here
+        ArrayList<ArrayList<Integer>> count=new ArrayList<ArrayList<Integer>>();
+        TreeMap<Integer,Integer> map=new TreeMap<Integer,Integer>();
+        for(int i=0;i<arr.length;i++){
+            map.put(arr[i],map.getOrDefault(arr[i],0)+1);
+        }
+
+        for(int key: map.keySet()){
+            ArrayList<Integer> list=new ArrayList<Integer>();
+            list.add(key);
+            list.add(map.get(key));
+            count.add(list);
+        }
+
+        return count;
+
     }
 
 
