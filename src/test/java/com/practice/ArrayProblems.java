@@ -637,7 +637,7 @@ public class ArrayProblems {
         int hash[] = new int[max + 1];
 
         for (int i = 0; i < arr.length; i++) {
-            hash[arr[i]]++;
+            hash[arr[i]]++;  //hash[arr[i]]=hash[i]+1;
         }
 
         for (int i = 0; i < hash.length; i++) {
