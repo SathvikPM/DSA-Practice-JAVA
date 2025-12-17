@@ -1,5 +1,7 @@
 package com.practice;
 
+import java.util.ArrayList;
+
 public class Hashing {
 
     public static void main(String[] args) {
@@ -18,8 +20,6 @@ public class Hashing {
 
         String mixed2 = "BanannaBanaabnnAnBBNN"; // mixed characters
         countCharFrequencyAll2(mixed2);
-
-
     }
 
     // ---------------- INTEGER FREQUENCY ----------------
@@ -102,9 +102,19 @@ public class Hashing {
        for(int i=0;i<s.length();i++){
            char c=s.charAt(i);
            if(c>='A'&&c<='Z'){
-
+                 c=(char)(c+32);
+                 int index=c-'a';
+                 hash[index]++;
+           }else{
+               int index=c-'a';
+               hash[index]++;
            }
 
+       }
+       for(int i=0;i<hash.length;i++){
+           if(hash[i]>0){
+               System.out.println((char)(i+'a')+" "+hash[i]);
+           }
        }
     }
 }
