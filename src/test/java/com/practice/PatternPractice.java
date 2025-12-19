@@ -36,8 +36,10 @@ public class PatternPractice {
 //        pattern26();
 //        pattern27();
 //        pattern28();
-        pattern29();
+//        pattern29();
+        pattern30();
     }
+
 
 
 
@@ -700,6 +702,35 @@ public class PatternPractice {
             }
             System.out.println();
         }
+    }
+    /*
+    Printing for example
+    If n=3
+    Output should be
+    333222111
+    332211
+    321
+     */
+    public static  void pattern30(){
+        int n=scan.nextInt();
+        int k=n;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<k;j++){
+                System.out.print(n);
+            }
+            for(int j=0;j<k;j++){
+                System.out.print(n-1);
+            }
+            for(int j=0;j<k;j++){
+                System.out.print(n-2);
+            }
+            System.out.println();
+            k=k-1;
+        }
+
+
+
+
     }
 
 

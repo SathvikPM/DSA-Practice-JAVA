@@ -1,11 +1,12 @@
 package com.practice;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.*;
 
 public class ArrayProblems {
+
+    public static void main(String[] args) {
+        countSuprior();
+    }
 
 
     /*
@@ -345,7 +346,7 @@ public class ArrayProblems {
     Output: 3
     Explanation: The first two digits or the last three digits are consecutive 1s. The maximum number of consecutive 1s is 3.
      */
-    class Solution {
+
         public int findMaxConsecutiveOnes(int[] arr) {
             int count = 0;
             int maxcount = 0;
@@ -362,7 +363,7 @@ public class ArrayProblems {
             }
             return maxcount;
         }
-    }
+
 
     /*
     Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.
@@ -670,6 +671,30 @@ public class ArrayProblems {
 
         return count;
 
+    }
+
+    public static void countSuprior(){
+        Scanner scan=new Scanner(System.in);
+        int n=scan.nextInt();
+        int arr[]=new int[n];
+        for (int i=0;i<n;i++){
+            arr[i]=scan.nextInt();
+        }
+
+        int supCount=0;
+        for(int i=0;i<arr.length-1;i++){
+            int count=0;
+//            int max=arr[i];
+            for(int j=i+1;j<arr.length;j++){
+                if(arr[j]>arr[i]){
+                    count++;
+                }
+            }
+            if(count==0){
+                supCount++;
+            }
+        }
+        System.out.print(supCount+1);
     }
 
 
