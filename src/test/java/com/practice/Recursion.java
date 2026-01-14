@@ -9,6 +9,7 @@ public class Recursion {
 //        printNumbers(5);
 //        printNumbers2(5);
 //        printNumbers3(5); //backtracking
+
         int arr[]={1,2,3,4,5};
         int n=5;
         reverse2(arr,n);
@@ -16,25 +17,40 @@ public class Recursion {
             System.out.print(arr[i]+" ");
         }
     }
-    public static void printNumbers(int n){
-        if(count>n){
-            System.out.println("finished method 1");
-            count=1;
-           return;
-        }
-        System.out.println(count);
-        count++;
-        printNumbers(n);
-    }
-    public  static  void printNumbers2(int n){
-        if(n==0){
-            System.out.println("finished method 2");
+
+    //printing numbers 1 to 5 using recursion
+    public static void printNumbers1(int n){
+        if(n<count){
+            System.out.println("1st completed");
             return;
         }
         System.out.println(count);
         count++;
-        printNumbers2(n-1);
+        printNumbers1(n);
+
     }
+
+    //printing numbers using recursion and backtracking
+    public static void printNumbers2(int n){
+        if(n==0){
+            System.out.println("2nd started");
+            return;
+        }
+        printNumbers2(n-1);
+        System.out.println(n);
+
+    }
+
+    //reverse printing 5 4 3 2 1
+    public static void reversePrinting(int n){
+        if(n==0){
+            return;
+        }
+        System.out.println(n);
+        n--;
+        reversePrinting(n);
+    }
+
     public static void printNumbers3(int n){
         if(n==0){
             System.out.println("Stated printing of backtracking method");
