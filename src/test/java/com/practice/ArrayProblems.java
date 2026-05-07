@@ -598,7 +598,7 @@ public class ArrayProblems {
     }
 
 
-    public int singleNumber3(int[] nums) {  //Better
+    public int singleNumber3(int[] nums) {  //Better but fails for
         HashMap<Integer,Integer> map=new HashMap<Integer,Integer>();
         for(int i=0;i<nums.length;i++){
             map.put(nums[i],map.getOrDefault(nums[i],0)+1);
@@ -696,6 +696,120 @@ public class ArrayProblems {
         }
         System.out.print(supCount+1);
     }
+
+     /*
+      Given an array arr[] containing integers and an integer k, your task is to find the
+       length of the longest subarray where the sum of its elements is equal to the given value k.
+        If there is no subarray with sum equal to k, return 0.
+    Examples:
+
+    Input: arr[] = [10, 5, 2, 7, 1, -10], k = 15
+    Output: 6
+    Explanation: Subarrays with sum = 15 are [5, 2, 7, 1], [10, 5] and [10, 5, 2, 7, 1, -10].
+    The length of the longest subarray with a sum of 15 is 6
+
+      */
+
+    public int longestSubarray(int[] arr, int k) { //brute force O(n*n*n)
+        // code here
+        int maxSum=Integer.MIN_VALUE;
+        int maxSize=0;
+        int size;
+        for(size=1;size<=arr.length;size++){
+            for(int i=0;i<=arr.length-size;i++){
+                int sum=0;
+                for(int j=i;j<i+size;j++){
+                    sum=sum+arr[j];
+                }
+                if(sum==k){
+                    if(size>maxSize){
+                        maxSize=size;
+                    }
+                }
+            }
+        }
+        return maxSize;
+    }
+
+    public int longestSubarray2(int[] arr, int k) { //brute force  O(n*n)
+        // code here
+        int size=0;
+        int maxSize=0;
+        for(int i=0;i<=arr.length;i++){
+            int sum=0;
+            for(int j=i;j<arr.length;j++){
+                sum=sum+arr[j];
+                size=j-i+1;
+                if(sum==k){
+                    if(maxSize<size){
+                        maxSize=size;
+                    }
+                }
+            }
+
+        }
+
+        return maxSize;
+    }
+
+    /*Given an array of integers arr[]  and a number k. Return the maximum sum of a subarray of size k.
+
+    Note: A subarray is a contiguous part of any given array.
+
+    Examples:
+
+    Input: arr[] = [100, 200, 300, 400], k = 2
+    Output: 700
+    Explanation: arr2 + arr3 = 700, which is maximum.*/
+    public int maxSubarraySum1(int[] arr, int k) {
+
+        int mSum = Integer.MIN_VALUE;
+
+        // Starting point of subarray
+        for(int i = 0; i <= arr.length - k; i++) {
+
+            int sum = 0;
+
+            // Calculate sum of k elements
+            for(int j = i; j < i + k; j++) {
+                sum += arr[j];
+            }
+
+            // Update maximum sum
+            if(sum > mSum) {
+                mSum = sum;
+            }
+        }
+
+        return mSum;
+    }
+
+
+    public int maxSubarraySum2(int[] arr, int k) {
+
+        int wSum = 0;
+
+        // First window
+        for(int i = 0; i < k; i++) {
+            wSum += arr[i];
+        }
+
+        int mSum = wSum;
+
+        // Sliding window
+        for(int j = k; j < arr.length; j++) {
+            wSum = wSum + arr[j] - arr[j-k];
+
+            if(wSum > mSum) {
+                mSum = wSum;
+            }
+        }
+
+        return mSum;
+    }
+
+
+
 
 
 

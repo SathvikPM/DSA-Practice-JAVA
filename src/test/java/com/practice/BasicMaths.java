@@ -19,10 +19,133 @@ public class BasicMaths {
 //        oppositeFaceOfDice(6);
 //        closestNumber(13,4);
 //        nthTermOfAP(1,2,3);
-        gcd(10,20);
-        armstrongNumber(153);
+//        gcd(10,20);
+//        armstrongNumber(153);
+//        findCubesSum();
+//        tableSum();
+//        windowSum();
+//        fiboSum();
+//          majorityElement();
+//        divisableBy9();
+//        bubbleSort();
+//        missingNumber();
+    }
+
+    private static void findCubesSum() {
+        Scanner scanner=new Scanner(System.in);
+        int m=scanner.nextInt();
+        int n=scanner.nextInt();
+        int sum=0;
+        for(int i=m;i<=n;i++){
+            int cube=i*i*i;
+            sum=sum+cube;
+        }
+        System.out.print(sum);
 
     }
+    static void tableSum(){
+        Scanner scanner=new Scanner(System.in);
+        int n=scanner.nextInt();
+        int sum=0;
+        for(int i=1;i<=n;i++){
+            int product=n*i;
+            sum=sum+product;
+        }
+        System.out.println(sum);
+    }
+
+    static void windowSum(){
+        Scanner scan=new Scanner(System.in);
+        int n=scan.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<arr.length;i++){
+            arr[i]=scan.nextInt();
+        }
+        int k=scan.nextInt();
+
+        for(int i=0;i<=arr.length-k;i++){
+            int max=arr[i];
+            for(int j=i;j<k+i;j++){
+                if(arr[j]>max){
+                   max=arr[j];
+                }
+            }
+            System.out.print(max+" ");
+        }
+    }
+
+    static  void fiboSum(){
+        Scanner scanner=new Scanner(System.in);
+        int n=scanner.nextInt();
+        int sum=0;
+        for(int i=0;i<n;i++){
+            int fibo=fibo(i);
+            sum=sum+fibo;
+        }
+        System.out.println(sum);
+    }
+    static int fibo(int n){
+        if(n<=1){
+            return  n;
+        }
+        return fibo(n-1)+fibo(n-2);
+    }
+    public static void divisableBy9(){
+        Scanner scanner=new Scanner(System.in);
+        int n=scanner.nextInt();
+        if(n%9==0){
+            System.out.println("Number "+ n + " is divisable by 9");
+        }else{
+            System.out.println("Number "+ n + " is not divisable by 9");
+        }
+    }
+
+    static void bubbleSort(){
+        int n=scan.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<arr.length;i++){
+            arr[i]=scan.nextInt();
+        }
+        final_Array(arr);
+        for(int i=0;i<arr.length;i++){
+            System.out.print(arr[i]+" ");
+        }
+    }
+    static void final_Array(int[] arr){
+        for(int i=0;i<arr.length-1;i++){
+            for(int j=0;j<arr.length-i-1;j++){
+                if(arr[j]>arr[j+1]){
+                    int temp=arr[j+1];
+                    arr[j+1]=arr[j];
+                    arr[j]=temp;
+                }
+            }
+        }
+    }
+
+    static void missingNumber(){
+        Scanner scan=new Scanner(System.in);
+        int n=scan.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<arr.length;i++){
+            arr[i]=scan.nextInt();
+        }
+        int totalSum=(arr.length+1)*((arr.length+1)+1)/2;
+        int sum=0;
+        for(int i=0;i<arr.length;i++){
+            sum=sum+arr[i];
+        }
+        System.out.print(totalSum-sum);
+
+    }
+
+    static void nearNumber(){
+        
+    }
+
+
+
+
     /*
     Given an integer num, return the number of digits in num that divide num.
     An integer val divides nums if nums % val == 0.
@@ -422,6 +545,7 @@ public class BasicMaths {
         }
         return true;
     }
+
 
 
 
