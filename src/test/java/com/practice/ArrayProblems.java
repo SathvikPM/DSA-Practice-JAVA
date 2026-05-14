@@ -848,6 +848,77 @@ public class ArrayProblems {
 
         }
 
+    /*Input: arr[] = [0, -1, 2, -3, 1], target = -2
+    Output: true
+    Explanation: There is a pair (1, -3) with the sum equal to given target, 1 + (-3) = -2.
+*/
+    boolean twoSum(int arr[], int target) {
+        // code here
+
+        Arrays.sort(arr);
+        int i=0;
+        int j=arr.length-1;
+
+        while(i<j){
+            int sum=arr[i]+arr[j];
+            if(sum==target){
+                return true;
+            }
+            if(sum<target){
+                i++;
+            }else if(sum>target){
+                j--;
+            }
+        }
+        return false;
+    }
+
+   /* Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+    You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+    You can return the answer in any order.
+
+    Input: nums = [2,7,11,15], target = 9
+    Output: [0,1]
+    Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].*/
+
+
+    public int[] twoSum2(int[] arr, int target) { //brute force
+        int result[]=new int[2];
+        for(int i=0;i<arr.length-1;i++){
+            for(int j=i+1;j<arr.length;j++){
+                int sum=arr[i]+arr[j];
+                if(sum==target){
+                    result[0]=i;
+                    result[1]=j;
+                }
+            }
+        }
+        return result;
+    }
+
+        public int[] twoSum3(int[] arr, int target) { //optimal
+            HashMap<Integer,Integer> map=new HashMap<Integer,Integer>();
+            int[] result=new int[2];
+            for(int i=0;i<arr.length;i++){
+                if(map.containsKey(target-arr[i])){
+                    result[0]=map.get(target-arr[i]);
+                    result[1]=i;
+                    return result;
+                }else{
+                    map.put(arr[i],i);
+                }
+            }
+            result[0]=-1;
+            result[1]=-1;
+            return result;
+        }
+
+
+
+
+
 
 
 
