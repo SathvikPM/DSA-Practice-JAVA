@@ -51,12 +51,34 @@ public class Streams {
 
         countElementsGreaterThanFive(listStream6);
 
-        //problem 6
+        //problem 7
         List<Integer> list7= Arrays.asList(1,2,3,4,5,6,7,8,9,10,11);
 
         Stream<Integer> listStream7=list7.stream();
 
         countElementsGreaterThanFive(listStream7);
+
+        //problem 8
+        List<Integer> list8= Arrays.asList(1,2,3,4,5);
+
+        Stream<Integer> listStream8=list8.stream();
+
+        productOfAllElemets(listStream8);
+
+        //problem 9
+        List<Integer> list9= Arrays.asList(1,2,3,4,5);
+
+        Stream<Integer> listStream9=list9.stream();
+
+        sumOfAllElemets(listStream9);
+
+
+        //problem 10
+        List<Integer> list10= Arrays.asList(1,2,3,4,5);
+
+        Stream<Integer> listStream10=list10.stream();
+
+        sumOfAllEvenElemets(listStream10);
 
 
 
@@ -125,8 +147,36 @@ public class Streams {
         System.out.println(count);
         System.out.println();
 
+    }
 
 
+    public  static  void productOfAllElemets(Stream<Integer> stream){
+
+         int product=stream.reduce(1,(a,b)->a*b);
+        System.out.println("printing product of the  elements");
+        System.out.println(product);
+        System.out.println();
+
+    }
+
+    public  static  void sumOfAllElemets(Stream<Integer> stream){
+
+        int sum=stream.reduce(0,(a,b)->a+b);
+        System.out.println("printing sum of the  elements");
+        System.out.println(sum);
+        System.out.println();
+
+    }
+
+
+    public  static  void sumOfAllEvenElemets(Stream<Integer> stream){
+
+        Stream<Integer> filteredEven=stream.filter(n->n%2==0);
+
+        int sum=filteredEven.reduce(0,(a,b)->a+b);
+        System.out.println("printing sum of even elements");
+        System.out.println(sum);
+        System.out.println();
 
     }
 
