@@ -1,8 +1,6 @@
 package com.practice;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class Streams {
@@ -23,6 +21,7 @@ public class Streams {
         Stream<Integer> listStream2=list2.stream();
 
         converttoSquare(listStream2);
+
         //problem 3
         List<Integer> list3= Arrays.asList(1,2,3,4,5,6,7,8,9,10);
 
@@ -80,12 +79,50 @@ public class Streams {
 
         sumOfAllEvenElemets(listStream10);
 
+        //problem 11
+        List<Integer> list11= Arrays.asList(1,2,3,4,5);
+
+        Stream<Integer> listStream11=list11.stream();
+
+        maxOfAllEvenElemets(listStream11);
 
 
+        //problem 12
+        List<Integer> list12= Arrays.asList(1,2,3,4,5);
+
+        Stream<Integer> listStream12=list12.stream();
+
+        minOfAllEvenElemets(listStream12);
 
 
+        //problem 13
+        List<Integer> list13= Arrays.asList(1,2,3,4,5);
 
+        Stream<Integer> listStream13=list12.stream();
 
+        sumOfSquareOfEvenNo(listStream13);
+
+        //problem 14
+        List<Integer> list14= Arrays.asList(1,2,2,5,3,4,5);
+
+        Stream<Integer> listStream14=list14.stream();
+
+        uniqueElements(listStream14);
+
+        //problem 15
+        List<Integer> list15= Arrays.asList(1,2,2,5,3,4,5);
+
+        averageOfElements(list15);
+
+        //problem 16
+        List<Integer> list16= Arrays.asList(4,5,3,6,2,1);
+        Stream<Integer> listStream16=list16.stream();
+        sortElementsinAsc(listStream16);
+
+        //problem 17
+        List<Integer> list17= Arrays.asList(4,5,3,6,2,1);
+        Stream<Integer> listStream17=list17.stream();
+        sortElementsinDesc(listStream17);
 
     }
     public  static  void filterEvenStrems(Stream<Integer> stream){
@@ -179,6 +216,107 @@ public class Streams {
         System.out.println();
 
     }
+
+    public  static  void maxOfAllEvenElemets(Stream<Integer> stream){
+
+        Optional<Integer> max=stream.max((a,b)->a.compareTo(b));
+
+        System.out.println("printing max of all elements");
+        System.out.println(max.get());
+        System.out.println();
+
+    }
+
+    public  static  void minOfAllEvenElemets(Stream<Integer> stream){
+
+        Optional<Integer> max=stream.min((a,b)->a.compareTo(b));
+
+        System.out.println("printing min of all elements");
+        System.out.print(max.get());
+        System.out.println();
+
+
+    }
+
+    public  static  void sumOfSquareOfEvenNo(Stream<Integer> stream){
+
+        Stream<Integer> evennumbers=stream.filter(n->n%2==0);
+
+        Stream<Integer> evennumberssq=evennumbers.map(n->n*n);
+
+        int sum=evennumberssq.reduce(0,(a,b)->a+b);
+
+        System.out.println("printing sum of all even square elements");
+
+        System.out.println(sum);
+        System.out.println();
+
+
+    }
+
+    public  static  void uniqueElements(Stream<Integer> stream){
+
+        Stream distinctStream=stream.distinct();
+
+
+        System.out.println("printing unique elemnts");
+
+        distinctStream.forEach(n->System.out.print(n+" "));
+        System.out.println();
+
+
+
+    }
+
+
+    public  static  void averageOfElements(List<Integer> list){
+
+        int sum=list.stream().reduce(0,(a,b)->a+b); //reduce is a terminal operation
+
+        long count=list.stream().count(); //count is a terminal operation
+
+        int avg=sum/(int)count;
+
+
+        System.out.println("printing avarage of all elemnts");
+
+      System.out.println(avg);
+        System.out.println();
+
+        //other method
+//        OptionalDouble average=list.stream().mapToInt(a->a.intValue())
+//                .average();
+//
+//        double ans=average.orElse(0.0);
+//
+//        System.out.print(ans);
+
+
+    }
+
+    public  static  void sortElementsinAsc(Stream<Integer> stream){
+
+        Stream<Integer> sortedStream=stream.sorted();
+        System.out.println("printing  all elemnts in Asc order");
+
+        sortedStream.forEach(e->System.out.print(e+" "));
+        System.out.println();
+
+
+    }
+
+    public  static  void sortElementsinDesc(Stream<Integer> stream){
+
+        Stream<Integer> sortedStream=stream.sorted(Comparator.reverseOrder());
+        System.out.println("printing  all elemnts in Desc order");
+
+        sortedStream.forEach(e->System.out.print(e+" "));
+        System.out.println();
+
+
+    }
+
+
 
 
 
