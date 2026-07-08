@@ -546,6 +546,81 @@ public class BasicMaths {
         return true;
     }
 
+    /*You are given an integer n.
+    Form a new integer x by concatenating all the non-zero digits of n in their original order. If there are no non-zero digits, x = 0.
+    Let sum be the sum of digits in x.
+    Return an integer representing the value of x * sum.
+    Input: n = 10203004
+    Output: 12340
+    Explanation:
+    The non-zero digits are 1, 2, 3, and 4. Thus, x = 1234.
+    The sum of digits is sum = 1 + 2 + 3 + 4 = 10.
+    Therefore, the answer is x * sum = 1234 * 10 = 12340*/
+    public long sumAndMultiply(int n) {
+        int x=0;
+        while(n>0){
+            int last=n%10;
+            if(last!=0){
+                x=x*10+last;
+            }
+            n=n/10;
+        }
+        int x1=reverseNum(x);
+        int sum=sumOfDigitss(x1);
+        return (long)sum*x1;
+
+
+    }
+    public static int reverseNum(int x){
+        int rev=0;
+        while(x!=0){
+            int last=x%10;
+            rev=rev*10+last;
+            x=x/10;
+        }
+        return rev;
+    }
+    public static int sumOfDigitss(int x){
+        int sum=0;
+        while(x!=0){
+            int last=x%10;
+            sum=sum+last;
+            x=x/10;
+        }
+        return sum;
+    }
+
+    /*to Print Alternative Prime Numbers
+    ex :2 5 11 17 23 31 41 47 */
+    public static void PrintAlernativePrime()
+    {
+
+        int n=50;
+        int count=1;
+
+        for(int i=1;i<=50;i++){
+            if(isPrimeforAlternative(i)){
+
+                if(count%2!=0){
+                    System.out.println(i);
+                }
+                count++;
+            }
+        }
+    }
+    public static boolean isPrimeforAlternative(int n){
+        if(n<2){
+            return false;
+        }
+        for(int i=2;i<=n/2;i++){
+            if(n%i==0){
+                return false;
+            }
+        }
+        return true;
+
+    }
+
 
 
 
