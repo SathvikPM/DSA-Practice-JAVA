@@ -915,6 +915,148 @@ public class ArrayProblems {
             return result;
         }
 
+    /*Given an array nums with n objects colored red, white, or blue, sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white, and blue.
+
+    We will use the integers 0, 1, and 2 to represent the color red, white, and blue, respectively.
+
+    You must solve this problem without using the library's sort function.
+
+
+
+    Example 1:
+
+    Input: nums = [2,0,2,1,1,0]
+    Output: [0,0,1,1,2,2]
+    Example 2:
+
+    Input: nums = [2,0,1]
+    Output: [0,1,2]*/
+    public void sortColors(int[] arr) { //brute force
+        int zeroCount=0;
+        int oneCount=0;
+        int twoCount=0;
+
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]==0){
+                zeroCount++;
+            }
+            if(arr[i]==1){
+                oneCount++;
+            }
+            if(arr[i]==2){
+                twoCount++;
+            }
+
+        }
+
+        for(int i=0;i<zeroCount;i++){
+            arr[i]=0;
+        }
+        for(int i=zeroCount;i<zeroCount+oneCount;i++){
+            arr[i]=1;
+        }
+        for(int i=zeroCount+oneCount;i<arr.length;i++){
+            arr[i]=2;
+        }
+
+    }
+
+   /* Given an array nums of size n, return the majority element.
+
+    The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+        Example 1:
+    Input: nums = [3,2,3]
+    Output: 3*/
+    //brute force=using inner for loops
+    //beter =using hashmap
+   //optimal
+    public int majorityElement(int[] arr) {
+        int count=0;
+        int el=0;
+        for(int i=0;i<arr.length;i++){
+            if(count==0){
+                el=arr[i];
+                count=1;
+            }
+            else if(arr[i]==el){
+                count++;
+            }else{
+                count--;
+            }
+
+        }
+        if(count==0){
+            return -1;
+        }
+        return el;
+    }
+
+
+/*
+53. Maximum Subarray
+
+    Given an integer array nums, find the subarray with the largest sum, and return its sum.
+    Example 1:
+    Input: nums = [-2,1,-3,4,-1,2,1,-5,4]
+    Output: 6
+    Explanation: The subarray [4,-1,2,1] has the largest sum 6.
+*/
+
+//    Brute
+        public int maxSubArray1(int[] arr) {
+            int maxSum=Integer.MIN_VALUE;
+            for(int size=1;size<=arr.length;size++){
+                for(int i=0;i<=arr.length-size;i++){
+                    int sum=0;
+                    for(int j=i;j<i+size;j++){
+                        sum=sum+arr[j];
+                    }
+                    if(sum>maxSum){
+                        maxSum=sum;
+                    }
+                }
+            }
+            return maxSum;
+        }
+
+//    Better
+        public int maxSubArray2(int[] arr) {
+            int maxSum=Integer.MIN_VALUE;
+            for(int i=0;i<arr.length;i++){
+                int sum=0;
+                for(int j=i;j<arr.length;j++){
+                    sum=sum+arr[j];
+                    if(sum>maxSum){
+                        maxSum=sum;
+                    }
+                }
+            }
+            return maxSum;
+
+        }
+
+
+    //optimal
+        public int maxSubArray3(int[] arr) {
+            int maxSum=Integer.MIN_VALUE;
+            int sum=0;
+            for(int i=0;i<arr.length;i++){
+                sum=sum+arr[i];
+                if(sum>maxSum){
+                    maxSum=sum;
+                }
+                if(sum<0){
+                    sum=0;
+                }
+
+            }
+            return maxSum;
+
+        }
+
+
+
+
 
 
 
