@@ -1053,6 +1053,108 @@ public class ArrayProblems {
             return maxSum;
 
         }
+    /*    121. Best Time to Buy and Sell Stock
+    You are given an array prices where prices[i] is the price of a given stock on the ith day.
+    You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+    Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0
+    Example 1:
+    Input: prices = [7,1,5,3,6,4]
+    Output: 5
+    Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+    Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell*/
+
+        //brute force
+        public int maxProfit2(int[] prices) {
+            int maxProfit=0;
+            for(int i=prices.length-1;i>=1;i--){
+                int profit=0;
+                for(int j=i-1;j>=0;j--){
+                    profit=prices[i]-prices[j];
+                    if(maxProfit<profit){
+                        maxProfit=profit;
+                    }
+                }
+            }
+            return maxProfit;
+        }
+
+        //optimal
+    public int maxProfit1(int[] prices) {
+        int profit=0;
+        int mini=prices[0];
+        for(int i=1;i<prices.length;i++){
+            int cost=prices[i]-mini;
+            if(cost>profit){
+                profit=cost;
+            }
+            if(mini>prices[i]){
+                mini=prices[i];
+            }
+
+        }
+        return profit;
+
+    }
+
+
+   /* You are given a 0-indexed integer array nums of even length consisting of an equal number of positive and negative integers.
+    You should return the array of nums such that the array follows the given conditions:
+    Every consecutive pair of integers have opposite signs.
+    For all integers with the same sign, the order in which they were present in nums is preserved.
+    The rearranged array begins with a positive integer.
+    Return the modified array after rearranging the elements to satisfy the aforementioned conditions.
+            Example 1:
+    Input: nums = [3,1,-2,-5,2,-4]
+    Output: [3,-2,1,-5,2,-4]
+    Explanation:
+    The positive integers in nums are [3,1,2]. The negative integers are [-2,-5,-4].
+    The only possible way to rearrange them such that they satisfy all conditions is [3,-2,1,-5,2,-4].
+    Other ways such as [1,-2,2,-5,3,-4], [3,1,2,-2,-5,-4], [-2,3,-5,1,-4,2] are incorrect because they do not satisfy one or more conditions.
+*/
+    //brute force
+    public int[] rearrangeArray1(int[] nums) {
+
+        int pos[]=new int[nums.length/2];
+        int pi=0;
+        int neg[]=new int[nums.length/2];
+        int ni=0;
+        int res[]=new int[nums.length];
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]>0){
+                pos[pi]=nums[i];
+                pi++;
+            }else{
+                neg[ni]=nums[i];
+                ni++;
+            }
+        }
+        for(int i=0;i<pos.length;i++){
+            res[i*2]=pos[i];
+            res[i*2+1]=neg[i];
+
+        }
+        return   res;
+    }
+
+    public int[] rearrangeArray2(int[] nums) {
+        int posIndex=0;
+        int negIndex=1;
+        int res[]=new int[nums.length];
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]>0){
+                res[posIndex]=nums[i];
+                posIndex=posIndex+2;
+            }else{
+                res[negIndex]=nums[i];
+                negIndex=negIndex+2;
+            }
+        }
+        return res;
+    }
+
+
+
+
 
 
 
