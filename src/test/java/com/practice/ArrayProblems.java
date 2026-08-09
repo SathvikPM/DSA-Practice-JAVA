@@ -1152,8 +1152,119 @@ public class ArrayProblems {
         return res;
     }
 
+    //varity 2 for rearrange
+  /*  pos != neg
+    Input: arr[] = [-5, -2, 5, 2, 4, 7, 1, 8, 0, -8]
+    Output: [5, -5, 2, -2, 4, -8, 7, 1, 8, 0]
+    Explanation : The positive numbers are [5, 2, 4, 7, 1, 8, 0]
+    and the negative integers are [-5,-2,-8]. According to the given conditions
+    we will start from the positive integer 5 and then -5 and so on. After reaching -8
+    there are no negative elements left, so according to the given rule,
+    we will add the remaining elements (in this case positive elements are remaining) as it in by maintaining the relative order.
+*/
+
+    void rearrange(ArrayList<Integer> arr) {
+        LinkedList<Integer> pos = new LinkedList<>();
+        LinkedList<Integer> neg = new LinkedList<>();
+
+        for(int i = 0; i < arr.size(); i++) {
+            if(arr.get(i) >= 0) {
+                pos.add(arr.get(i));
+            } else {
+                neg.add(arr.get(i));
+            }
+        }
+
+        if(pos.size() > neg.size()) {
+
+            for(int i = 0; i < neg.size(); i++) {
+                arr.set(2 * i, pos.get(i));
+                arr.set(2 * i + 1, neg.get(i));
+            }
+
+            int index = neg.size() * 2;
+
+            for(int i = neg.size(); i < pos.size(); i++) {
+                arr.set(index, pos.get(i));
+                index++;
+            }
+
+        } else {
+
+            for(int i = 0; i < pos.size(); i++) {
+                arr.set(2 * i, pos.get(i));
+                arr.set(2 * i + 1, neg.get(i));
+            }
+
+            int index = pos.size() * 2;
+
+            for(int i = pos.size(); i < neg.size(); i++) {
+                arr.set(index, neg.get(i));
+                index++;
+            }
+        }
+    }
+
+    /*Array Leaders
+    You are given an array arr of positive integers. Your task is to find
+    all the leaders in the array. An element is considered a leader if
+    it is greater than or equal to all elements to its right. The rightmost element is always a leader.
+        Examples:
+    Input: arr = [16, 17, 4, 3, 5, 2]
+    Output: [17, 5, 2]
+    Explanation: Note that there is nothing greater on the right side of 17, 5 and, 2.*/
+
+    //brute force
+    static ArrayList<Integer> leaders1(int arr[]) {
+        // code here
+
+        ArrayList<Integer> list=new ArrayList<Integer>();
+
+        for(int i=0;i<arr.length;i++){
+
+            boolean leader=true;
+            for(int j=i+1;j<arr.length;j++){
+                if(arr[j]>arr[i]){
+                    leader=false;
+                    break;
+                }
+
+            }
+            if(leader==true){
+                list.add(arr[i]);
+            }
+
+        }
+
+        return list;
 
 
+
+    }
+
+   //optimal
+    static ArrayList<Integer> leaders2(int arr[]) {
+        // code here
+        ArrayList<Integer> list=new ArrayList<Integer>();
+        int max=Integer.MIN_VALUE;
+        for(int i=arr.length-1;i>=0;i--){
+            if(arr[i]>=max){
+                list.add(arr[i]);
+                max=arr[i];
+            }
+        }
+        int i=0;
+        int j=list.size()-1;
+        // Collections.reverse(ans);
+        while(i<=j){
+            int temp=list.get(i);
+            list.set(i,list.get(j));
+            list.set(j,temp);
+            i++;
+            j--;
+        }
+        return list;
+    }
 
 
 
