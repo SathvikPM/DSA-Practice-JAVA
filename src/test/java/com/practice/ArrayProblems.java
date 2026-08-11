@@ -1266,6 +1266,111 @@ public class ArrayProblems {
         return list;
     }
 
+   /* Given an array arr[] of non-negative integers. Find the length of the longest sub-sequence
+    such that elements in the subsequence are consecutive integers, the consecutive numbers can be in any order.
+        Examples:
+    Input: arr[] = [2, 6, 1, 9, 4, 5, 3]
+    Output: 6
+    Explanation: The consecutive numbers here are 1, 2, 3, 4, 5, 6. These 6 numbers form the longest consecutive subsquence.*/
+
+    //brute
+    public int longestConsecutive(int[] arr) {
+        // code here
+        int longest=1;
+        for(int i=0;i<arr.length;i++){
+            int x=arr[i];
+            int count=0;
+            while(linearSearch(arr,x)==true){
+                count++;
+                x=x+1;
+            }
+            if(count>longest){
+                longest=count;
+            }
+        }
+        return longest;
+
+    }
+    public static boolean linearSearch(int[] arr,int x){
+
+        for(int i=0;i<arr.length;i++){
+
+
+            if(arr[i]==x){
+                return true;
+            }
+        }
+        return false;
+
+
+    }
+
+    //better
+
+    public int longestConsecutive2(int[] arr) {
+        // code here
+
+        Arrays.sort(arr);
+        int count=1;
+        int longest=1;
+
+
+        for(int i=0;i<arr.length-1;i++){
+            if(arr[i+1]-arr[i]==1){
+                count++;
+            }else if(arr[i+1]==arr[i]){
+                continue;
+            }else{
+                if(longest<count){
+                    longest=count;
+
+                }
+                count=1;
+            }
+        }
+        // If the last consecutive sequence reaches the end of the array
+        if(longest<count){
+            longest=count;
+        }
+
+        return longest;
+
+    }
+ //optimal
+
+  /*  Store all elements in a HashSet so we can check whether an element exists in O(1) average time.
+    Check if the previous consecutive element (e - 1) exists. If it does not exist, e is the starting element of a sequence.
+    Count consecutive elements using e + 1, e + 2, etc., and update longest with the maximum sequence length.*/
+    public int longestConsecutive3(int[] arr) {
+        // code here
+
+        HashSet<Integer> set=new HashSet();
+
+        for(int i=0;i<arr.length;i++){
+            set.add(arr[i]);
+        }
+        int count=1;
+        int longest=1;
+        for(int e:set){
+
+            if(!set.contains(e-1)){
+                count=1;
+                int x=e;
+                while(set.contains(x+1)){
+                    count++;
+                    x=x+1;
+                }
+
+            }
+            if(count>longest){
+                longest=count;
+            }
+        }
+        return longest;
+
+
+    }
+
 
 
 
