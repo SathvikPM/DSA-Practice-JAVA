@@ -1371,6 +1371,163 @@ public class ArrayProblems {
 
     }
 
+  /*  Given an m x n integer matrix matrix, if an element is 0, set its entire row and column to 0's.
+    You must do it in place.
+            Example 1:
+    Input: matrix = [[1,1,1],[1,0,1],[1,1,1]]
+    Output: [[1,0,1],[0,0,0],[1,0,1]]
+
+    Input: matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
+    Output: [[0,0,0,0],[0,4,5,0],[0,3,1,0]]
+   */
+
+//brute force //satisfy some conditions
+    public void setZeroes(int[][] matrix) {
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix[0].length;j++){
+                if(matrix[i][j]==0){
+                    markRow(i,matrix);
+                    markColumn(j,matrix);
+                }
+            }
+        }
+        setZeroes1(matrix);
+    }
+    public static void markRow(int row,int[][] matrix){
+        for(int i=0;i<matrix[0].length;i++){
+            if(matrix[row][i]!=0){
+                matrix[row][i]=-1;
+            }
+        }
+    }
+    public static void markColumn(int column,int[][] matrix){
+        for(int i=0;i<matrix.length;i++){
+            if(matrix[i][column]!=0){
+                matrix[i][column]=-1;
+            }
+        }
+    }
+
+    public void setZeroes1(int[][] matrix) {
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix[0].length;j++){
+                if(matrix[i][j]==-1){
+                    matrix[i][j]=0;
+                }
+            }
+        }
+    }
+
+
+
+    //optimal //satisy all conditions
+    public void setZeroes2(int[][] matrix) {
+
+        boolean[] row=new boolean[matrix.length];
+        boolean[] column=new boolean[matrix[0].length];
+
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix[0].length;j++){
+                if(matrix[i][j]==0){
+                    row[i]=true;
+                    column[j]=true;
+                }
+            }
+        }
+
+        for(int i=0;i<row.length;i++){
+            for(int j=0;j<column.length;j++){
+                if(row[i]==true || column[j]==true){
+                    matrix[i][j]=0;
+                }
+            }
+        }
+
+    }
+
+
+    //brute force
+    public void rotate1(int[][] matrix) {
+        int ans[][]=new int[matrix.length][matrix.length];
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix[0].length;j++){
+                ans[j][(matrix.length-1)-i]=matrix[i][j];
+            }
+        }
+        for(int i=0;i<ans.length;i++){
+            for(int j=0;j<ans[0].length;j++){
+                matrix[i][j]=ans[i][j];
+            }
+        }
+    }
+
+
+    //optimal
+    public void rotate2(int[][] matrix) {
+
+        for(int i=0;i<matrix.length;i++){
+            for(int j=i+1;j<matrix.length;j++){
+                int temp=matrix[i][j];
+                matrix[i][j]=matrix[j][i];
+                matrix[j][i]=temp;
+            }
+        }
+        for(int i=0;i<matrix.length;i++){
+            reverse(matrix,i);
+        }
+
+    }
+    public static void reverse(int[][] matrix,int i){
+        int left=0;
+        int right=matrix[i].length-1;
+        while(left<=right){
+            int temp=matrix[i][left];
+            matrix[i][left]=matrix[i][right];
+            matrix[i][right]=temp;
+            left++;
+            right--;
+        }
+    }
+
+
+
+
+        public List<Integer> spiralOrder(int[][] matrix) {
+            int left=0;
+            int right=matrix[0].length-1;
+            int top=0;
+            int bottom=matrix.length-1;
+            LinkedList<Integer> list=new LinkedList<Integer>();
+            while(left<=right && top<=bottom){  //till the elemnts left in both row and column we need to traverse
+                for(int i=left;i<=right;i++){
+                    list.add(matrix[top][i]);
+                }
+                top++;
+                for(int i=top;i<=bottom;i++){
+                    list.add(matrix[i][right]);
+                }
+                right--;
+                if(top<=bottom){  //if there only one row left- we need to prevent the right to left traversal
+                    for(int i=right;i>=left;i--){
+                        list.add(matrix[bottom][i]);
+                    }
+                    bottom--;
+                }
+                if(left<=right){  //to prevent the last traversal from bottom to top
+                    for(int i=bottom;i>=top;i--){
+                        list.add(matrix[i][left]);
+                    }
+
+                    left++;
+                }
+
+            }
+            return list;
+
+
+        }
+
+
 
 
 
