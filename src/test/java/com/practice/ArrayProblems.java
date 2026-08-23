@@ -1490,8 +1490,10 @@ public class ArrayProblems {
     }
 
 
-
-
+   /* Given an m x n matrix, return all elements of the matrix in spiral order.
+    Example 1:
+    Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
+    Output: [1,2,3,6,9,8,7,4,5]*/
         public List<Integer> spiralOrder(int[][] matrix) {
             int left=0;
             int right=matrix[0].length-1;
@@ -1526,6 +1528,44 @@ public class ArrayProblems {
 
 
         }
+
+    /*Given an array of integers nums and an integer k, return the total number of subarrays whose sum equals to k.
+    A subarray is a contiguous non-empty sequence of elements within an array.
+        Example 1:
+    Input: nums = [1,1,1], k = 2
+    Output: 2*/
+
+    //brute force
+    //using 3 for loops
+
+    //better
+    //uisng two for loop and adding the each elemnts to sum
+
+
+
+    //optimal -using prefix Sum and hashmap
+    public int subarraySum(int[] nums, int k) {
+
+        int count=0;
+        HashMap<Integer,Integer> map=new HashMap<Integer,Integer>();
+        int prefixSum=0;
+        map.put(0,1);
+        for(int i=0;i<nums.length;i++){
+            prefixSum=prefixSum+nums[i];
+
+            if(map.containsKey(prefixSum-k)){
+                count=count+map.get(prefixSum-k);
+            }
+
+            if(map.containsKey(prefixSum)){
+                int value=map.get(prefixSum);
+                map.put(prefixSum,value+1);
+            }else{
+                map.put(prefixSum,1);
+            }
+        }
+        return count;
+    }
 
 
 
