@@ -1568,6 +1568,36 @@ public class ArrayProblems {
     }
 
 
+    /*Given an integer numRows, return the first numRows of Pascal's triangle.
+    In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:
+    Example 1:
+    Input: numRows = 5
+    Output: [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]*/
+
+
+        public List<List<Integer>> generate(int numRows) {
+
+            List<List<Integer>> list=new LinkedList<List<Integer>>();
+            for(int row=1;row<=numRows;row++){
+                List<Integer> temp=generateRow(row);
+                list.add(temp);
+            }
+            return list;
+        }
+        public static List<Integer> generateRow(int row){
+            int ans=1;
+            LinkedList<Integer> temp=new LinkedList<Integer>();
+            temp.add(ans);
+            for(int column=1;column<row;column++){
+                ans=ans*(row-column);
+                ans=ans/column;
+                temp.add(ans);
+            }
+            return temp;
+        }
+
+
+
 
 
 
