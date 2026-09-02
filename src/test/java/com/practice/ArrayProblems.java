@@ -848,6 +848,72 @@ public class ArrayProblems {
 
         }
 
+        //optimal
+        public int longestSubarray4(int[] arr, int k) {  //O(n) hashMap + prefix Sum
+            // code here
+
+            HashMap<Integer,Integer> map=new HashMap<Integer,Integer>();
+            int sum=0;
+            int maxSum=0;
+            int maxLength=0;
+
+            for(int i=0;i<arr.length;i++){
+
+                sum=sum+arr[i];
+
+                if(sum==k){
+                    maxLength=i+1;
+                }else if(map.containsKey(sum-k)){
+                    int length=i-map.get(sum-k);
+                    if(length>maxLength){
+                        maxLength=length;
+                    }
+                }
+
+                if(!map.containsKey(sum)){
+                    map.put(sum,i);
+                }
+
+
+            }
+            return maxLength;
+
+        }
+
+   /* Input: arr[] = [15, -2, 2, -8, 1, 7, 10, 23]
+    Output: 5
+    Explanation: The longest subarray with sum equals to 0 is [-2, 2, -8, 1, 7].*/
+
+    int maxLength(int arr[]) {
+        // code here
+        int maxLength=0;
+
+        HashMap<Integer,Integer> map=new HashMap<Integer,Integer>();
+
+        int sum=0;
+        for(int i=0;i<arr.length;i++){
+
+            sum=sum+arr[i];
+            if(sum==0){
+                maxLength=i+1;
+            }else if(map.containsKey(sum)){
+                int length=i-map.get(sum);
+                if(length>maxLength){
+                    maxLength=length;
+                }
+            }
+            if(!map.containsKey(sum)){
+                map.put(sum,i);
+            }
+
+
+
+
+        }
+        return maxLength;
+
+    }
+
     /*Input: arr[] = [0, -1, 2, -3, 1], target = -2
     Output: true
     Explanation: There is a pair (1, -3) with the sum equal to given target, 1 + (-3) = -2.
@@ -1596,6 +1662,90 @@ public class ArrayProblems {
             return temp;
         }
 
+    /*Given an integer rowIndex, return the rowIndexth (0-indexed) row of the Pascal's triangle.
+
+    In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:
+
+    Example 1:
+
+    Input: rowIndex = 3
+    Output: [1,3,3,1]
+    Example 2:
+
+    Input: rowIndex = 0
+    Output: [1]*/
+    public List<Integer> getRow(int rowIndex) {
+        rowIndex=rowIndex+1;  //in leetcode the pascals traiangle row number start  from 0
+        long ans=1;
+        LinkedList<Integer> list=new LinkedList<Integer>();
+        list.add((int)ans);
+        for(int column=1;column<rowIndex;column++){
+            ans=ans*(rowIndex-column);
+            ans=ans/column;
+            list.add((int)ans);
+        }
+        return list;
+    }
+
+
+
+    //three Sum
+    public List<List<Integer>> threeSum(int[] nums) {
+        HashSet<List<Integer>> set=new HashSet<>();
+        LinkedList<List<Integer>> temp=new LinkedList<>();
+        for(int i=0;i<nums.length;i++){
+
+            for(int j=i+1;j<nums.length;j++){
+
+                for(int k=j+1;k<nums.length;k++){
+                    if(nums[i]+nums[j]+nums[k]==0){
+                        LinkedList<Integer> list=new LinkedList<Integer>();
+                        list.add(nums[i]);
+                        list.add(nums[j]);
+                        list.add(nums[k]);
+                        Collections.sort(list);
+                        set.add(list);
+                    }
+                }
+            }
+        }
+
+        for(List<Integer> list:set){
+            temp.add(list);
+        }
+        return temp;
+
+    }
+
+
+
+    class Solution {
+        public List<List<Integer>> threeSum(int[] nums) {
+            HashSet<List<Integer>> set=new HashSet<>();
+            LinkedList<List<Integer>> temp=new LinkedList<>();
+            for(int i=0;i<nums.length;i++){
+                HashSet<Integer> seen=new HashSet<Integer>();
+                for(int j=i+1;j<nums.length;j++){
+                    int third=-(nums[i]+nums[j]);
+                    if(seen.contains(third)){
+                        LinkedList<Integer> list=new LinkedList<>();
+                        list.add(nums[i]);
+                        list.add(nums[j]);
+                        list.add(third);
+                        Collections.sort(list);
+                        set.add(list);
+                    }
+                    seen.add(nums[j]);
+                }
+            }
+
+            for(List<Integer> list:set){
+                temp.add(list);
+            }
+            return temp;
+
+        }
+    }
 
 
 
