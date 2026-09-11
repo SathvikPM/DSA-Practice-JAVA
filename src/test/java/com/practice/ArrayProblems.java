@@ -1747,6 +1747,52 @@ public class ArrayProblems {
         }
     }
 
+    /*Given an array of intervals where intervals[i] = [starti, endi], merge all overlapping intervals, and return an array of the non-overlapping intervals that cover all the intervals in the input.
+    Example 1:
+    Input: intervals = [[1,3],[2,6],[8,10],[15,18]]
+    Output: [[1,6],[8,10],[15,18]]
+    Explanation: Since intervals [1,3] and [2,6] overlap, merge them into [1,6].*/
+        public int[][] merge(int[][] intervals) {
+
+            // Sort intervals based on start value
+            Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+
+            List<List<Integer>> ansList = new ArrayList<>();
+
+            for (int[] interval : intervals) {
+
+                // If result is empty OR there is no overlap
+                if (ansList.isEmpty() ||
+                        interval[0] > ansList.get(ansList.size() - 1).get(1)) {
+                    List<Integer> list = new ArrayList<>();   // ansList.add(Arrays.asList(interval[0], interval[1]));
+                    list.add(interval[0]);
+                    list.add(interval[1]);
+                    ansList.add(list);
+
+                } else {
+
+                    // Overlapping interval
+                    int last = ansList.size() - 1;
+                    int maxElement= interval[1];
+                    if(ansList.get(last).get(1)>maxElement){   //Math.max(ansList.get(last).get(1), interval[1])
+                        maxElement=ansList.get(last).get(1);
+                    }
+                    ansList.get(last).set( 1,maxElement );
+                }
+            }
+
+            // Convert List<List<Integer>> to int[][]
+            int[][] result = new int[ansList.size()][2];
+
+            for (int i = 0; i < ansList.size(); i++) {
+                result[i][0] = ansList.get(i).get(0);
+                result[i][1] = ansList.get(i).get(1);
+            }
+
+            return result;
+        }
+
+
 
 
 
