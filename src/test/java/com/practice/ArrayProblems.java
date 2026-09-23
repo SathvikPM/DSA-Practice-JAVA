@@ -1796,6 +1796,144 @@ public class ArrayProblems {
 
 
 
+        //merge3 needs to implemeny gap version
+
+    /*You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.
+    Merge nums1 and nums2 into a single array sorted in non-decreasing order.
+    The final sorted array should not be returned by the function, but instead be stored inside the array nums1. To accommodate this, nums1 has a length of m + n, where the first m elements denote the elements that should be merged, and the last n elements are set to 0 and should be ignored. nums2 has a length of n.
+    Example 1:
+    Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
+    Output: [1,2,2,3,5,6]
+    Explanation: The arrays we are merging are [1,2,3] and [2,5,6].
+    The result of the merge is [1,2,2,3,5,6] with the underlined elements coming from nums1.*/
+
+    public void merge(int[] arr1, int m, int[] arr2, int n) {
+
+        int[] arr=new int[m+n];
+        int i=0;
+        int j=0;
+        int index=0;
+        while(i<m && j<n){
+            if(arr1[i]<arr2[j]){
+                arr[index]=arr1[i];
+                i++;
+                index++;
+            }else if(arr1[i]>arr2[j]){
+                arr[index]=arr2[j];
+                j++;
+                index++;
+            }else{
+                arr[index]=arr1[i];
+                arr[index+1]=arr2[j];
+                index=index+2;
+
+                i++;
+                j++;
+            }
+        }
+
+        while(i<m){
+            arr[index]=arr1[i];
+            i++;
+            index++;
+        }
+        while(j<n){
+            arr[index]=arr2[j];
+            j++;
+            index++;
+        }
+
+        for(int k=0;k<arr.length;k++){
+            arr1[k]=arr[k];
+        }
+
+
+
+    }
+
+    public void merge2(int[] nums1, int m, int[] nums2, int n) {
+
+        int i=m-1;
+        int j=n-1;
+        int index=m+n-1;
+
+        while(i>=0 && j>=0){
+            if(nums1[i]>nums2[j]){
+                nums1[index]=nums1[i];
+                i--;
+            }else{
+                nums1[index]=nums2[j];
+                j--;
+            }
+            index--;
+        }
+
+        while(j>=0){
+            nums1[index]=nums2[j];
+            j--;
+            index--;
+        }
+    }
+
+
+
+    /*A permutation of an array of integers is an arrangement of its members into a sequence or linear order.
+
+   For example, for arr = [1,2,3], the following are all the permutations of arr: [1,2,3], [1,3,2], [2, 1, 3], [2, 3, 1], [3,1,2], [3,2,1].
+    The next permutation of an array of integers is the next lexicographically greater permutation of its integer. More formally, if all the permutations of the array are sorted in one container according to their lexicographical order, then the next permutation of that array is the permutation that follows it in the sorted container. If such arrangement is not possible, the array must be rearranged as the lowest possible order (i.e., sorted in ascending order).
+
+    For example, the next permutation of arr = [1,2,3] is [1,3,2].
+    Similarly, the next permutation of arr = [2,3,1] is [3,1,2].
+    While the next permutation of arr = [3,2,1] is [1,2,3] because [3,2,1] does not have a lexicographical larger rearrangement.
+    Given an array of integers nums, find the next permutation of nums.
+
+    The replacement must be in place and use only constant extra memory.
+    Example 1:
+    Input: nums = [1,2,3]
+    Output: [1,3,2]*/
+        public void nextPermutation(int[] nums) {
+
+            int index=-1;
+            int n=nums.length;
+            for(int i=n-2;i>=0;i--){
+                if(nums[i]<nums[i+1]){
+                    index=i;
+                    break;
+                }
+            }
+            if(index==-1){
+                reverse(nums,0,n-1);
+                return;
+            }
+
+            for(int i=n-1;i>=index;i--){
+                if(nums[index]<nums[i]){
+                    int temp=nums[index];
+                    nums[index]=nums[i];
+                    nums[i]=temp;
+                    break;
+                }
+
+            }
+
+            reverseP(nums,index+1,n-1);
+
+        }
+        public static void reverseP(int[] nums,int i,int j){
+            while(i<j){
+                int temp=nums[i];
+                nums[i]=nums[j];
+                nums[j]=temp;
+                i++;
+                j--;
+            }
+        }
+
+
+
+
+
+
 
 
 
