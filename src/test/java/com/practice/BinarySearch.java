@@ -148,6 +148,140 @@ public class BinarySearch {
 
 
 
+   /* 34. Find First and Last Position of Element in Sorted Array
+    Example 1:
+
+    Input: nums = [5,7,7,8,8,10], target = 8
+    Output: [3,4]*/
+
+    public int[] searchRange(int[] nums, int target) {
+        int[] ans=new int[2];
+        int si=firstOccurance(nums,target);
+        if(si==-1){
+            ans[0]=-1;
+            ans[1]=-1;
+            return ans;
+        }
+        int ei=lastOccurance(nums,target);
+        ans[0]=si;
+        ans[1]=ei;
+        return ans;
+
+    }
+
+    public static int firstOccurance(int[] nums,int target){
+        int low=0;
+        int high=nums.length-1;
+        int si=-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(nums[mid]==target){
+                si=mid;
+                high=mid-1;
+            }else if(nums[mid]>target){
+                high=mid-1;
+            }else{
+                low=mid+1;
+            }
+        }
+        return si;
+    }
+    public static int lastOccurance(int[] nums,int target){
+        int ei=-1;
+        int low=0;
+        int high=nums.length-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(nums[mid]==target){
+                ei=mid;
+                low=mid+1;
+            }else if(nums[mid]>target){
+                high=mid-1;
+            }else{
+                low=mid+1;
+            }
+        }
+        return ei;
+    }
+
+
+    /*Given the array nums after the possible rotation and an integer target, return the index of target if it is in nums, or -1 if it is not in nums.
+    You must write an algorithm with O(log n) runtime complexity.
+    Example 1:
+    Input: nums = [4,5,6,7,0,1,2], target = 0
+    Output: 4*/
+    public int searchRotatedArray(int[] nums, int target) {
+        int low=0;
+        int high=nums.length-1;
+
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(nums[mid]==target){
+                return mid;
+            }
+            if(nums[low]<=nums[mid]){
+                if(target>=nums[low] && target<=nums[mid]){
+                    high=mid-1;
+                }else{
+                    low=mid+1;
+                }
+            }else{
+                if(target>=nums[mid+1] && target<=nums[high]){
+                    low=mid+1;
+                }else{
+                    high=mid-1;
+                }
+            }
+        }
+        return -1;
+
+    }
+
+    /*Given the array nums after the rotation and an integer target, return true if target is in nums, or false if it is not in nums.
+
+    You must decrease the overall operation steps as much as possible.
+            Example 1:
+
+    Input: nums = [2,5,6,0,0,1,2], target = 0
+    Output: true*/
+    public boolean searchRotatedArray2(int[] nums, int target) {
+        int low=0;
+        int high=nums.length-1;
+
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(nums[mid]==target){
+                return true;
+            }
+
+            if(nums[low]==nums[mid] ){
+                low++;
+                continue;
+            }
+            if( nums[high]==nums[mid]){
+                high--;
+                continue;
+            }
+            if(nums[low]<=nums[mid]){
+                if(target>=nums[low] && target<=nums[mid]){
+                    high=mid-1;
+                }else{
+                    low=mid+1;
+                }
+            }else{
+                if(target>=nums[mid+1] && target<=nums[high]){
+                    low=mid+1;
+                }else{
+                    high=mid-1;
+                }
+            }
+        }
+        return false;
+
+    }
+
+
+
 
 
 }
