@@ -282,6 +282,120 @@ public class BinarySearch {
 
 
 
+    /*Suppose an array of length n sorted in ascending order is rotated between 1 and n times.
+    For example, the array nums = [0,1,2,4,5,6,7] might become:
+    Given the sorted rotated array nums of unique elements, return the minimum element of this array.
+    You must write an algorithm that runs in O(log n) time.
+    Example 1:
+    Input: nums = [3,4,5,1,2]
+    Output: 1
+    Explanation: The original array was [1,2,3,4,5] rotated 3 times.*/
+    public int findMin(int[] nums) {
+        int low=0;
+        int high=nums.length-1;
+        int min=Integer.MAX_VALUE;
+        while(low<=high){
+            int mid=(low+high)/2;
+            //check if the first half is Sorted and eleminate secondhalf
+            if(nums[low]<=nums[mid]){
+                if(min>=nums[low]){
+                    min=nums[low];
+                }
+                low=mid+1;
+                //check if the second half is Sorted and eleminate firstHalf
+            }else{
+                if(min>=nums[mid+1]){
+                    min=nums[mid];
+                }
+                high=mid-1;
+            }
+        }
+        return min;
+    }
+
+
+
+    /*Given an increasing sorted rotated array arr[] of distinct integers. The array is right-rotated k times. Find the value of k.
+        Examples:
+    Input: arr[] = [5, 1, 2, 3, 4]
+    Output: 1
+    Explanation: The given array is [5, 1, 2, 3, 4].
+    The original sorted array is [1, 2, 3, 4, 5].
+    We can see that the array was rotated 1 times to the right.*/
+    public int findKRotation(int arr[]) {
+        // Code here
+
+        int low=0;
+        int high=arr.length-1;
+        int min=Integer.MAX_VALUE;
+        int ans=0;
+
+        while(low<=high){
+            int mid=(low+high)/2;
+
+            if(arr[low]<=arr[mid]){
+                if(arr[low]<min){
+                    min=arr[low];
+                    ans=low;
+                }
+                low=mid+1;
+
+            }else{
+                if(arr[mid]<min){
+                    min=arr[mid];
+                    ans=mid;
+                }
+                high=mid-1;
+
+            }
+        }
+        return ans;
+
+    }
+   /* Given a non-negative integer x, return the square root of x rounded down to the nearest integer. The returned integer should be non-negative as well.
+    You must not use any built-in exponent function or operator.
+    For example, do not use pow(x, 0.5) in c++ or x ** 0.5 in python.
+    Example 1:
+    Input: x = 4
+    Output: 2
+    Explanation: The square root of 4 is 2, so we return 2.*/
+    public int mySqrt(int x) {  //brute force(using linear search)
+
+        int ans=0;
+        for(int i=1;i<=x;i++){
+            if((long)i*i<=x){
+                ans=i;
+            }else{
+                break;
+            }
+        }
+        return ans;
+    }
+
+
+    public int mySqrt2(int x) { //optimal
+        int low=1;
+        int high=x;
+        int ans=0;
+        while(low<=high){
+            int mid = low + (high - low) / 2;
+            long prod = (long) mid * mid;
+            if(prod>x){
+                high=mid-1;
+            }else if(prod<x){
+                ans=mid;
+                low=mid+1;
+            }else{
+                return mid;
+            }
+        }
+        return ans;
+
+    }
+
+
+
+
 
 
 }
